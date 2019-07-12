@@ -30,7 +30,7 @@ function signIn(){
 	}
 	$("#signInButton").text('登录中...');
 	$.ajax({
-		url: "https://207.148.102.32:443/wm/inout/datas?method=signIn&pol4=" + encodeURI($("#phoneNo").val() + "\t"+ $("#password").val() + "\t"),
+		url: "http://207.148.102.32/wm/inout/datas?method=signIn&pol4=" + encodeURI($("#phoneNo").val() + "\t"+ $("#password").val() + "\t"),
 		type:'GET',
 		cache:false,
 		xhrFields: {
