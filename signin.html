@@ -14,16 +14,41 @@
 <body style="padding:10px">
 <br>
 <br>
-<input type="text" class="form-control input-lg has-success" style="height:80px; font-size:50px;" placeholder="手机号"><br>
-<input type="password" class="form-control input-lg has-success" style="height:80px; font-size:50px;" placeholder="登录密码"><br>
-<button type="button"  class="form-control input-lg"  style="height:80px; font-size:50px;" onclick="signIn();">登录</button><br>
+<input id="phoneNo" type="text" class="form-control input-lg has-success" style="height:80px; font-size:50px;" placeholder="手机号"><br>
+<input id="password" type="password" class="form-control input-lg has-success" style="height:80px; font-size:50px;" placeholder="登录密码"><br>
+<button id="signInButton" type="button"  class="form-control input-lg"  style="height:80px; font-size:50px;" onclick="signIn();">登录</button><br>
 <button type="button"  class="form-control input-lg"  style="height:80px; font-size:50px;" onclick="location='signup.html'">注册新用户</button>
 
 </body>
 <script type="text/javascript">
 
 function signIn(){
-
+	if($("#phoneNo").val()==null || $("#phoneNo").val() == "" ||
+		$("#password").val()==null || $("#password").val() == ""){
+		alert("请填写登录信息");
+		return;
+	}
+	$("#signInButton").text('登录中...');
+	$.ajax({
+		url: "http://207.148.102.32/wm/inout/datas?method=signIn&pol4=" + encodeURI($("#phoneNo").val() + "\t"+ $("#password").val()),
+		type:'GET',
+		cache:false,
+		xhrFields: {
+			withCredentials: true
+		},
+		success:function(data) {
+			if(data != null && data.indexOf("ERROR:")!= -1){
+				alert(data);
+				return;
+			}
+			alert("登录成功");
+			$.cookie('phoneNo', $("#phoneNo").val());
+			location = "index.html";
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown){
+			alert("注册失败请重试")
+		}
+	});
 }
 
 </script>

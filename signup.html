@@ -26,7 +26,7 @@
 var ccccptttcha;
 function captcha(){
 	$.ajax({
-		url: 'http://localhost:8080/wm/inout/datas?method=captcha&pol4=',
+		url: 'http://207.148.102.32/wm/inout/datas?method=captcha&pol4=',
 		type:'GET',
 		cache:false,
 		xhrFields: {
@@ -57,9 +57,8 @@ function signUp(){
 		alert("手机号错误");
 		return;
 	}
-	
 	$.ajax({
-		url: "http://localhost:8080/wm/inout/datas?method=signUp&pol4=" + encodeURI($("#phoneNo").val() + "\t"+ $("#password").val() + "\t" + $("#recBy").val() + "\t" + ccccptttcha),
+		url: "http://207.148.102.32/wm/inout/datas?method=signUp&pol4=" + encodeURI($("#phoneNo").val() + "\t"+ $("#password").val() + "\t" + $("#recBy").val() + "\t" + ccccptttcha),
 		type:'GET',
 		cache:false,
 		xhrFields: {
@@ -71,14 +70,12 @@ function signUp(){
 				return;
 			}
 			alert("注册成功");
-			
 			location = "index.html";
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown){
 			alert("注册失败请重试")
 		}
 	});
-
 }
 
 </script>
