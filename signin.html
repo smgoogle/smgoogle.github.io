@@ -30,7 +30,7 @@ function signIn(){
 	}
 	$("#signInButton").text('登录中...');
 	$.ajax({
-		url: "http://207.148.102.32/wm/inout/datas?method=signIn&pol4=" + encodeURI($("#phoneNo").val() + "\t"+ $("#password").val() + "\t"),
+		url: "https://207.148.102.32/wm/inout/datas?method=signIn&pol4=" + encodeURI($("#phoneNo").val() + "\t"+ $("#password").val() + "\t"),
 		type:'GET',
 		cache:false,
 		xhrFields: {
@@ -39,6 +39,7 @@ function signIn(){
 		success:function(data) {
 			if(data != null && data.indexOf("ERROR:")!= -1){
 				alert(data);
+				$("#signInButton").text('登录');
 				return;
 			}
 			alert("登录成功");
@@ -47,6 +48,7 @@ function signIn(){
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown){
 			alert("登录失败")
+			$("#signInButton").text('登录');
 		}
 	});
 }

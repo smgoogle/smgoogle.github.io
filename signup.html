@@ -26,7 +26,7 @@
 var ccccptttcha;
 function captcha(){
 	$.ajax({
-		url: 'http://207.148.102.32/wm/inout/datas?method=captcha&pol4=',
+		url: 'https://207.148.102.32/wm/inout/datas?method=captcha&pol4=',
 		type:'GET',
 		cache:false,
 		xhrFields: {
@@ -36,7 +36,7 @@ function captcha(){
 			ccccptttcha = rsa(data);
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown){
-			alert("请求错误请重试")
+			//alert("请求错误请重试")
 		}
 	});
 }
@@ -58,7 +58,7 @@ function signUp(){
 		return;
 	}
 	$.ajax({
-		url: "http://207.148.102.32/wm/inout/datas?method=signUp&pol4=" + encodeURI($("#phoneNo").val() + "\t"+ $("#password").val() + "\t" + $("#recBy").val() + "\t" + ccccptttcha),
+		url: "https://207.148.102.32/wm/inout/datas?method=signUp&pol4=" + encodeURI($("#phoneNo").val() + "\t"+ $("#password").val() + "\t" + $("#recBy").val() + "\t" + ccccptttcha),
 		type:'GET',
 		cache:false,
 		xhrFields: {
@@ -66,7 +66,14 @@ function signUp(){
 		},
 		success:function(data) {
 			if(data != null && data.indexOf("ERROR:")!= -1){
-				alert(data);
+				
+				if(data.indexOf("验证码")!= -1){
+					alert("注册失败请重试");
+				}else{
+					alert(data);
+				}
+				$("#signInButton").text('注册');
+				captcha();
 				return;
 			}
 			alert("注册成功");
@@ -74,6 +81,7 @@ function signUp(){
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown){
 			alert("注册失败请重试")
+			$("#signInButton").text('注册');
 		}
 	});
 }
