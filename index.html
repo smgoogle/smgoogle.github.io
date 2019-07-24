@@ -72,7 +72,43 @@ if($.cookie('phoneNo') == null){
 location='signin.html';
 return;
 }
-location='yhb.html';
+
+if($.cookie('trying') == 'Y'){
+	if($.cookie('tryingRegStatus') == '1' || $.cookie('tryingRegStatus') == '2'){
+		location = 'regPanel.html';
+		return;
+	}
+	
+	if($.cookie('tryingRegStatus') == '3'){
+		location = 'ckStatus.html';
+		return;
+	}
+
+return;
+}
+if($.cookie('smAccountSetted') == 'Y'){
+	if($.cookie('regStatus') == '0'){
+		location = 'step3.html';
+	}
+}else{
+	location = 'step1.html';
+	return;
+}
+
+if($.cookie('regStatus') == '1' || $.cookie('regStatus') == '2'){
+	location = 'regPanel.html';
+	return;
+}
+
+if($.cookie('regStatus') == '3'){
+	$.cookie('fromRegPanel','N');
+	if(Number($.cookie('promCkNum')) >= 2){
+		location = 'ckStatus.html';
+	}else{
+		location = 'ckTools.html';
+	}
+}
+
 }
 function doPeleeBiz(){
 location='pelee.html';
