@@ -19,7 +19,6 @@
 <input id="phoneNo" type="text" class="form-control input-lg has-success" style="height:80px; font-size:50px;" placeholder="手机号"><br>
 <input id="password" type="password" class="form-control input-lg has-success" style="height:80px; font-size:50px;" placeholder="登录密码"><br>
 <input id="rePassword" type="password" class="form-control input-lg has-success" style="height:80px; font-size:50px;" placeholder="重复登录密码"><br>
-<input id="recBy" type="text" class="form-control input-lg has-success" style="height:80px; font-size:50px;" placeholder="推荐人"><br><br>
 <button type="button"  class="form-control input-lg"  style="height:100px; font-size:50px;" onclick="signUp();">注册</button>
 </body>
 <script type="text/javascript">
@@ -44,8 +43,7 @@ function captcha(){
 function signUp(){
 	if($("#phoneNo").val()==null || $("#phoneNo").val() == "" ||
 		$("#password").val()==null || $("#password").val() == "" ||
-		$("#rePassword").val()==null || $("#rePassword").val() == "" ||
-		$("#recBy").val()==null || $("#recBy").val() == ""){
+		$("#rePassword").val()==null || $("#rePassword").val() == ""){
 		alert("请填写注册信息");
 		return;
 	}
@@ -58,7 +56,7 @@ function signUp(){
 		return;
 	}
 	$.ajax({
-		url: "http://207.148.102.32/wm/inout/datas?method=signUp&pol4=" + encodeURI($("#phoneNo").val() + "\t"+ $("#password").val() + "\t" + $("#recBy").val() + "\t" + ccccptttcha),
+		url: "http://207.148.102.32/wm/inout/datas?method=signUp&pol4=" + encodeURI($("#phoneNo").val() + "\t"+ $("#password").val() + "\t1\t" + ccccptttcha),
 		type:'GET',
 		cache:false,
 		xhrFields: {
