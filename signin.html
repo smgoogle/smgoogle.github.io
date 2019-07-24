@@ -45,9 +45,14 @@ function signIn(){
 			alert("登录成功");
 			$.cookie('phoneNo', $("#phoneNo").val());
 			
-			var infos = data.split("\n")
+			var signResult = data.split("\n")
+			var baseInfos = signResult[0].split(",");
+			$.cookie('promRegNum', baseInfos[1].split("\t")[0]);
+			$.cookie('promCkNum', baseInfos[1].split("\t")[1]);
 			
-			alert(infos)
+			
+			
+			
 			location = "index.html";
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown){
