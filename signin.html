@@ -44,6 +44,10 @@ function signIn(){
 			}
 			alert("登录成功");
 			$.cookie('phoneNo', $("#phoneNo").val());
+			
+			var infos = data.split("\n")
+			
+			alert(infos)
 			location = "index.html";
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown){
