@@ -16,8 +16,8 @@
 <br>
 <input id="phoneNo" type="text" class="form-control input-lg has-success" style="height:80px; font-size:50px;" placeholder="手机号"><br>
 <input id="password" type="password" class="form-control input-lg has-success" style="height:80px; font-size:50px;" placeholder="登录密码"><br>
-<button id="signInButton" type="button"  class="form-control input-lg"  style="height:80px; font-size:50px;" onclick="signIn();">登录</button><br>
-<button type="button"  class="form-control input-lg"  style="height:80px; font-size:50px;" onclick="location='signup.html'">注册新用户</button>
+<button id="signInButton" type="button"  class="form-control input-lg"  style="height:100px; font-size:50px; color:#FFF; background:#679deb;" onclick="signIn();">登录</button><br>
+<button type="button"  class="form-control input-lg"  style="height:100px; font-size:50px; color:#FFF; background:#679deb;" onclick="location='signup.html'">注册新用户</button>
 
 </body>
 <script type="text/javascript">
@@ -45,31 +45,7 @@ function signIn(){
 			alert("登录成功");
 			$.cookie('phoneNo', $("#phoneNo").val());
 			
-			var signResult = data.split("\n")
-			var baseInfos = signResult[0].split(",");
-			$.cookie('promRegNum', baseInfos[1].split("\t")[0]);
-			$.cookie('promCkNum', baseInfos[1].split("\t")[1]);
-			
-			var acctSet = baseInfos[2].split("\t");
-			
-			$.cookie('smAccountSetted', acctSet[0]);
-			$.cookie('regStatus', baseInfos[3]);
-			
-			$.cookie('recCode', baseInfos[5]);
-			$.cookie('beginRegTime', baseInfos[6]);
-			
-			$.cookie('trying', baseInfos[10].split("\t")[0]);
-			$.cookie('tryingRegStatus', baseInfos[10].split("\t")[1]);
-			$.cookie('tryingCkInStatus', baseInfos[10].split("\t")[2]);
-			
-			$.cookie('cash', baseInfos[11].split("\t")[0]);
-			$.cookie('withdrawed', baseInfos[11].split("\t")[1]);
-			
-			var regInfo = signResult[1].split(",");
-			
-			$.cookie('leftSmNum', regInfo[0]);
-			$.cookie('expectedRegNum', regInfo[1]);
-			$.cookie('currRegNum', regInfo[2]);
+			analyseData(data);
 			
 			location = "index.html";
 		},
@@ -78,6 +54,34 @@ function signIn(){
 			$("#signInButton").text('登录');
 		}
 	});
+}
+
+function analyseData(data){
+	var signResult = data.split("\n")
+	var baseInfos = signResult[0].split(",");
+	$.cookie('promRegNum', baseInfos[1].split("\t")[0]);
+	$.cookie('promCkNum', baseInfos[1].split("\t")[1]);
+	
+	var acctSet = baseInfos[2].split("\t");
+	
+	$.cookie('smAccountSetted', acctSet[0]);
+	$.cookie('regStatus', baseInfos[3]);
+	
+	$.cookie('recCode', baseInfos[5]);
+	$.cookie('beginRegTime', baseInfos[6]);
+	
+	$.cookie('trying', baseInfos[10].split("\t")[0]);
+	$.cookie('tryingRegStatus', baseInfos[10].split("\t")[1]);
+	$.cookie('tryingCkInStatus', baseInfos[10].split("\t")[2]);
+	
+	$.cookie('cash', baseInfos[11].split("\t")[0]);
+	$.cookie('withdrawed', baseInfos[11].split("\t")[1]);
+	
+	var regInfo = signResult[1].split(",");
+	
+	$.cookie('leftSmNum', regInfo[0]);
+	$.cookie('expectedRegNum', regInfo[1]);
+	$.cookie('currRegNum', regInfo[2]);
 }
 
 </script>

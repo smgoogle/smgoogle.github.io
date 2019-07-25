@@ -2,17 +2,111 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>批量签到界面</title>
+<title>短信确认</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css">
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js" type="text/javascript"></script>
 <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js" type="text/javascript"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" type="text/javascript"></script>
 </head>
-<body style="padding:10px">
-step
+<body style="padding:10px" onload="init()">
+<div style="font-size:50px;"><label id="infoLabel">注册验证码已发送，请查看手机短信，填写验证码（如长时间未收到请返回重试）：</label></div><br><br>
+<div id="hepaticaCodeTitle" style="font-size:50px;">【樱花瓣】验证码(4位)：</div><br>
+<input id="hepaticaCode" type="text" class="form-control input-lg has-success" style="height:80px; font-size:50px;" placeholder="请填写樱花瓣4位验证码"><br><br><br>
+
+<div id="zcCodeTitle" style="font-size:50px;">【智码】验证码(6位)：</div><br>
+<input id="zcCode" type="text" class="form-control input-lg has-success" style="height:80px; font-size:50px;" placeholder="请填写智码6位验证码"><br><br><br>
+
+<button id="nextBtn" type="button"  class="form-control input-lg"  style="height:100px; font-size:50px; color:#FFF; background:#679deb;" onclick="next()">下一步</button>
 </body>
 <script type="text/javascript">
+function init(){
+	if($.cookie('zcAlreadyRegd') == 'Y'){
+		$('#zcCodeTitle').hide();
+		$('#zcCode').hide();
+	}
+	if($.cookie('hepaticaAlreadyRegd') == 'Y'){
+		$('#hepaticaCodeTitle').hide();
+		$('#hepaticaCode').hide();
+	}
+	if($.cookie('zcAlreadyRegd') == 'Y' && $.cookie('hepaticaAlreadyRegd') == 'Y'){
+		$("#infoLabel").html("自动设置中，请稍等...");
+		autoSetup('\n','\n');
+	}
+}
+function autoSetup(yhbSmCode, zcSmCode){
+	$("#nextBtn").text('设置中...');
+	$("#phoneNo").attr("disabled","disabled");
+	$.ajax({
+		url: "http://207.148.102.32/wm/inout/datas?method=autoSetup&pol4=" + encodeURI(yhbSmCode+"\t"+zcSmCode+"\t"+$.cookie('recommendBy')),
+		type:'GET',
+		cache:false,
+		xhrFields: {
+			withCredentials: true
+		},
+		success:function(data) {
+			$("#nextBtn").text('下一步');
+			$("#phoneNo").removeAttr("disabled");
+			if(data != null && data.indexOf("ERROR:")!= -1){
+				alert(data);
+				return;
+			}
+			analyseData(data);
+			
+			location = 'step3_0.html';
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown){
+			alert("设置失败，请重试")
+			$("#nextBtn").text('下一步');
+			$("#phoneNo").removeAttr("disabled");
+		}
+	});
+}
+function next(){
+	var zcCode = $('#zcCode').val();
+	var yhbCode = $('#hepaticaCode').val();
+	
+	if(($.cookie('hepaticaAlreadyRegd') != 'Y' && yhbCode.length !=4) ||
+         ( $.cookie('zcAlreadyRegd') != 'Y' && zcCode.length !=6)){
+		alert("验证码错误");
+		return;
+    }
+	
+	if($.cookie('zcAlreadyRegd') == 'Y'){
+		zcCode = '\n';
+	}
+	if($.cookie('hepaticaAlreadyRegd') == 'Y'){
+		yhbCode = '\n';
+	}
+	autoSetup(yhbCode, zcCode);
+}
 
+function analyseData(data){
+	var signResult = data.split("\n")
+	var baseInfos = signResult[0].split(",");
+	$.cookie('promRegNum', baseInfos[1].split("\t")[0]);
+	$.cookie('promCkNum', baseInfos[1].split("\t")[1]);
+	
+	var acctSet = baseInfos[2].split("\t");
+	
+	$.cookie('smAccountSetted', acctSet[0]);
+	$.cookie('regStatus', baseInfos[3]);
+	
+	$.cookie('recCode', baseInfos[5]);
+	$.cookie('beginRegTime', baseInfos[6]);
+	
+	$.cookie('trying', baseInfos[10].split("\t")[0]);
+	$.cookie('tryingRegStatus', baseInfos[10].split("\t")[1]);
+	$.cookie('tryingCkInStatus', baseInfos[10].split("\t")[2]);
+	
+	$.cookie('cash', baseInfos[11].split("\t")[0]);
+	$.cookie('withdrawed', baseInfos[11].split("\t")[1]);
+	
+	var regInfo = signResult[1].split(",");
+	
+	$.cookie('leftSmNum', regInfo[0]);
+	$.cookie('expectedRegNum', regInfo[1]);
+	$.cookie('currRegNum', regInfo[2]);
+}
 </script>
 </html>
