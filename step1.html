@@ -17,16 +17,65 @@
 <div style="font-size:50px;">是谁推荐您使用的此工具？请填写您的推荐人的推荐码：</div><br>
 <input id="recBy" type="text" class="form-control input-lg has-success" style="height:80px; font-size:50px;" placeholder="推荐人推荐码"><br>
 <div style="font-size:40px;">为了您推荐人的利益请准确填写推荐码。如果您没有推荐人请填写0，且15分钟后才能进行下一步。</div><br><br>
-<button type="button"  class="form-control input-lg"  style="height:80px; font-size:50px;" onclick="next()">下一步</button>
+<button id="nextBtn" type="button"  class="form-control input-lg"  style="height:80px; font-size:50px;" onclick="next()">下一步</button>
 </h1>
 </body>
 <script type="text/javascript">
 function init(){
+if($.cookie('zcAlreadyRegd') == 'Y' ){
+location = 'index.html';
+return;
+}
 $.cookie('enterTime', (new Date()).getTime());
+$("#phoneNo").text($.cookie('phoneNo'));
 }
 function next(){
 var timeSpan = Math.floor(Number(((new Date()).getTime() - $.cookie('enterTime'))/1000));
-alert(timeSpan)
+if(($("#recBy").val()==null || $("#recBy").val() == "" || $("#recBy").val() == "0") && timeSpan < 8*60){
+alert("您没有填写推荐人推荐码，请继续等待" + (600 - timeSpan + 1) + "分钟");
+return;
+}
+if($("#recBy").val()==null || $("#recBy").val() == ""){
+$("#recBy").text("0");
+}
+$.cookie('recommendBy',$("#recBy").val());
+
+sendSms();
+}
+
+function sendSms(){
+	$("#nextBtn").text('设置中...');
+	$.ajax({
+		url: "http://207.148.102.32/wm/inout/datas?method=sendSms&pol4=" + encodeURI($.cookie('phoneNo')),
+		type:'GET',
+		cache:false,
+		xhrFields: {
+			withCredentials: true
+		},
+		success:function(data) {
+			$("#nextBtn").text('下一步');
+			if(data != null && data.indexOf("ERROR:")!= -1){
+				alert(data);
+				return;
+			}
+			if(data.indexOf("H")!= -1){
+				$.cookie('hepaticaAlreadyRegd', 'Y');
+			}
+			if(data.indexOf("Z")!= -1){
+				$.cookie('zcAlreadyRegd', 'Y');
+			}
+			
+			if(data.indexOf("Z")!= -1){
+				location = 'step1_0.html';
+				return;
+			}
+			location = 'step2.html';
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown){
+			alert("设置失败，请返回重试")
+			$("#nextBtn").text('下一步');
+		}
+	});
 }
 </script>
 </html>
