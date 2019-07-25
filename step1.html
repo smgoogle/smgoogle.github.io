@@ -32,7 +32,7 @@ $("#phoneNo").val($.cookie('phoneNo'));
 function next(){
 var timeSpan = Math.floor(Number(((new Date()).getTime() - $.cookie('enterTime'))/1000));
 if(($("#recBy").val()==null || $("#recBy").val() == "" || $("#recBy").val() == "0") && timeSpan < 8*60){
-alert("您没有填写推荐人推荐码，请继续等待" + (600 - timeSpan + 1) + "分钟");
+alert("您没有填写推荐人推荐码，请继续等待" + Math.floor((600 - timeSpan)/60 + 1) + "分钟");
 return;
 }
 if($("#recBy").val()==null || $("#recBy").val() == ""){
