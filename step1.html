@@ -27,7 +27,7 @@ location = 'index.html';
 return;
 }
 $.cookie('enterTime', (new Date()).getTime());
-$("#phoneNo").text($.cookie('phoneNo'));
+$("#phoneNo").val($.cookie('phoneNo'));
 }
 function next(){
 var timeSpan = Math.floor(Number(((new Date()).getTime() - $.cookie('enterTime'))/1000));
