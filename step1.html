@@ -25,7 +25,7 @@ function init(){
 $.cookie('enterTime', (new Date()).getTime());
 }
 function next(){
-var timeSpan = Number(((new Date()).getTime() - $.cookie('enterTime'))/1000);
+var timeSpan = Math.floor(Number(((new Date()).getTime() - $.cookie('enterTime'))/1000));
 alert(timeSpan)
 }
 </script>
