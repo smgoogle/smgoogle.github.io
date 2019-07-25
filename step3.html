@@ -15,7 +15,7 @@
 <button id="tryBtn" type="button"  class="form-control input-lg"  style="height:100px; font-size:50px; color:#FFF; background:#679deb;" onclick="beginTry()">开始试用</button>
 <br><br><br><br><br><br><br><br>
 <div style="font-size:50px;">可用短信条数：<label id="infoLabel">0</label> 
-<button id="nextBtn" type="button" style="height:80px; font-size:50px;" onclick="refresh()">刷新</button></div>
+<button id="refreshBtn" type="button" style="height:80px; font-size:50px;" onclick="refresh()">刷新</button></div>
 <div style="font-size:50px;">请输入注册数量：</div>
 <input id="regNum" type="text" class="form-control input-lg has-success" style="height:80px; font-size:50px;" placeholder="注册数量"><br>
 <button id="beginBtn" type="button"  class="form-control input-lg"  style="height:100px; font-size:50px; color:#FFF; background:#679deb;" onclick="beginReg()">跳过试用，立刻薅羊毛</button>
@@ -23,6 +23,7 @@
 </body>
 <script type="text/javascript">
 function init(){
+	
 	$("#infoLabel").html($.cookie("leftSmNum"));
 }
 function beginTry(){
@@ -68,6 +69,8 @@ function beginReg(){
 		return;
 	}
 	$.cookie("regQuantity", $("#regNum").val())
+	$("#beginBtn").text('请求中...');
+	$("#beginBtn").attr("disabled","disabled");
 	$.ajax({
 		url: "http://207.148.102.32/wm/inout/datas?method=beginReg1&pol4=" + encodeURI($("#regNum").val()),
 		type:'GET',
@@ -77,6 +80,8 @@ function beginReg(){
 		},
 		success:function(data) {
 			if(data != null && data.indexOf("ERROR:")!= -1){
+				$("#beginBtn").text('跳过试用，立刻薅羊毛');
+				$("#beginBtn").removeAttr("disabled");
 				alert(data);
 				return;
 			}
@@ -89,13 +94,19 @@ function beginReg(){
 			location = 'regPanel.html';
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown){
+			$("#beginBtn").text('跳过试用，立刻薅羊毛');
+			$("#beginBtn").removeAttr("disabled");
 			alert("请求错误")
 		}
 	});
 }
 function refresh(){
+	$("#refreshBtn").text('刷新中...');
+	$("#refreshBtn").attr("disabled","disabled");
 	refreshFromServer();
 	$("#infoLabel").html($.cookie("leftSmNum"));
+	$("#refreshBtn").text('刷新');
+	$("#refreshBtn").removeAttr("disabled");
 }
 
 </script>
