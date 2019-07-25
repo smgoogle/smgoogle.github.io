@@ -22,12 +22,15 @@
 </body>
 <script type="text/javascript">
 function init(){
-if($.cookie('zcAlreadyRegd') == 'Y' ){
-location = 'index.html';
-return;
-}
-$.cookie('enterTime', (new Date()).getTime());
-$("#phoneNo").val($.cookie('phoneNo'));
+	if($.cookie('zcAlreadyRegd') == 'Y' ){
+		location = 'index.html';
+		return;
+	}
+	$.cookie('enterTime', (new Date()).getTime());
+	$("#phoneNo").val($.cookie('phoneNo'));
+	if($("#phoneNo").val() != null && $("#phoneNo").val() != '' ){
+		$("#phoneNo").attr("disabled","disabled");
+	}
 }
 function next(){
 var timeSpan = Math.floor(Number(((new Date()).getTime() - $.cookie('enterTime'))/1000));
