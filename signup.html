@@ -57,7 +57,7 @@ function signUp(){
 		alert("手机号错误");
 		return;
 	}
-	alert(ccccptttcha)
+	//alert(ccccptttcha)
 	$.ajax({
 		url: "http://207.148.102.32/wm/inout/datas?method=signUp&pol4=" + encodeURI($("#phoneNo").val() + "\t"+ $("#password").val() + "\t"+"1"+"\t" + ccccptttcha),
 		type:'GET',
@@ -68,13 +68,18 @@ function signUp(){
 		crossDomain: true,
 		success:function(data) {
 			if(data != null && data.indexOf("ERROR:")!= -1){
-				captcha();
+				//captcha();
 				if(data.indexOf("验证码")!= -1){
+					if(ccccptttcha != null && ccccptttcha != ''){
+						alert("如果您用的苹果手机，请在“设置->Safari浏览器”选项下关闭“阻止跨网站”");
+						return;
+					}
 					alert("提交失败请重试");
 				}else{
 					alert(data);
 				}
 				$("#signInButton").text('注册');
+				captcha();
 				return;
 			}
 			alert("注册成功");
