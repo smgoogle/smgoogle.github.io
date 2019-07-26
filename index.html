@@ -73,19 +73,17 @@
 </h1>
 </body>
 <script type="text/javascript">
-$(function(){
-	pushHistory();
-	window.addEventListener("popstate", function(e) {
-		location = 'signin.html';
-	}, false);
-	function pushHistory() {
-		var state = {
-			title: "-",
-			url: "#"
-		};
-		window.history.pushState(state, "-", "#");
-	}
-});
+$(document).ready(function(e) {   
+	var counter = 0;  
+	if (window.history && window.history.pushState) {  
+		 $(window).on('popstate', function () {  
+			window.history.pushState('forward', null, '#');  
+			window.history.forward(1);
+			window.location.href = 'signin.html';
+		});  
+	  }   
+}); 
+
 function init(){
 	if(isEmpty($.cookie('phoneNo'))){
 		$('#cashLabel').val('可提现：(登录查看)');
