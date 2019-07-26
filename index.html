@@ -13,16 +13,18 @@
 <script src="common.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-$(document).ready(function(e) {   
-	var counter = 0;  
-	if (window.history && window.history.pushState) {  
-		 $(window).on('popstate', function () {  
-			window.history.pushState('forward', null, '#');  
-			window.history.forward(1);
-			window.location.href = 'signin.html';
-		});  
-	  }   
-}); 
+jQuery(document).ready(function($) {
+
+  if (window.history && window.history.pushState) {
+
+    window.history.pushState('forward', null, './#forward');
+
+    $(window).on('popstate', function() {
+      alert('Back button was pressed.');
+    });
+
+  }
+});
 </script>
 </head>
 <body style="padding:10px" onload="init()">
