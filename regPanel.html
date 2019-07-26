@@ -67,6 +67,7 @@ function refreshUI(){
 	}
 	if($.cookie('regStatus') == '3'){
 		$('#statusLabel').html('注册完成！快去签到吧~');
+		alert($.cookie('trying'));
 		if($.cookie('trying') == 'Y'){
 			refreshFromServer();
 			location = 'ckStatus.html';
