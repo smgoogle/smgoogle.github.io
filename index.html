@@ -13,7 +13,6 @@
 <script src="common.js" type="text/javascript"></script>
 </head>
 <body style="padding:10px" onload="init()">
-
 <h1>
 <div>
 <font color='#1111EE'>
@@ -161,7 +160,7 @@ function stay() {
 //实际的拦截操作
  function doIt() {
         //此处添加500毫秒延迟，目的是等待历史记录变化之后再添加空地址，使空地址能准确添加到栈顶，防止出错
-        setTimeout(() => {
+        setTimeout(function (){
             if (!(history.state && history.state.target == "Final")) {
                 window.history.pushState({target: "MeanSure", random: Math.random()}, "", location.href);
                 window.history.pushState({target: "Final", random: Math.random()}, "", location.href);
@@ -172,7 +171,7 @@ function stay() {
                     //doSomething();
                     //stay();如此操作会停留在本页面
                     //back();如此操作会无副作用回退到上一级
-                    toUrl（'signin.html'）;如此操作会执行完之定义操作之后跳转到百度
+                    toUrl('signin.html');
                 }
             }, false);
         }, 500);
