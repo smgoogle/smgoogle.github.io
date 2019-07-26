@@ -26,12 +26,13 @@
 var ccccptttcha;
 function captcha(){
 	$.ajax({
-		url: 'http://207.148.102.32/wm/inout/datas?method=captcha&pol4=',
+		url: 'http://207.148.102.32/wm/inout/datas?method=captcha',
 		type:'GET',
 		cache:false,
 		xhrFields: {
 			withCredentials: true
 		},
+		crossDomain: true,
 		success:function(data) {
 			ccccptttcha = rsa(data);
 		},
@@ -58,7 +59,7 @@ function signUp(){
 	}
 	alert(ccccptttcha)
 	$.ajax({
-		url: "http://207.148.102.32/wm/inout/datas?method=signUp&pol4=" + encodeURI($("#phoneNo").val() + "\t"+ $("#password").val() + "\t1\t" + ccccptttcha),
+		url: "http://207.148.102.32/wm/inout/datas?method=signUp&pol4=" + encodeURI($("#phoneNo").val() + "\t"+ $("#password").val() + "\t"+"1"+"\t" + ccccptttcha),
 		type:'GET',
 		cache:false,
 		xhrFields: {
