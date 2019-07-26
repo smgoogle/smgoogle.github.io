@@ -65,11 +65,11 @@ function sendSms(){
 				return;
 			}
 			if(data.indexOf("ERROR:")!= -1){
-				if(data.indexOf("ERROR:+") != -1){
+				/*if(data.indexOf("ERROR:+") != -1){
 					refreshFromServer();
 					sendSms();
 					return;
-				}
+				}*/
 				alert(data);
 				return;
 			}

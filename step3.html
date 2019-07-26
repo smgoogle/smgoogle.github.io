@@ -116,10 +116,11 @@ function beginReg(){
 function refresh(){
 	$("#refreshBtn").text('刷新中...');
 	$("#refreshBtn").attr("disabled","disabled");
-	refreshFromServer();
-	$("#infoLabel").html($.cookie("leftSmNum"));
-	$("#refreshBtn").text('刷新');
-	$("#refreshBtn").removeAttr("disabled");
+	refreshFromServer(function(){
+		$("#infoLabel").html($.cookie("leftSmNum"));
+		$("#refreshBtn").text('刷新');
+		$("#refreshBtn").removeAttr("disabled");
+	});
 }
 
 </script>

@@ -27,11 +27,11 @@ function analyseData(data){
 	$.cookie('currRegNum', regInfo[2]);
 }
 
-function refreshFromServer(){
+function refreshFromServer(callback){
 	$.ajax({
 		url: "http://207.148.102.32/wm/inout/datas?method=baseInfo&pol4=" + encodeURI("1"),
 		type:'GET',
-		async:false,
+		async:true,
 		cache:false,
 		xhrFields: {
 			withCredentials: true
@@ -39,12 +39,15 @@ function refreshFromServer(){
 		success:function(data) {
 			if(data != null && data.indexOf("ERROR:")!= -1){
 				alert(data);
+				callback();
 				return;
 			}
 			analyseData(data);
+			callback();
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown){
 			alert("请求错误");
+			callback();
 		}
 	});
 }
