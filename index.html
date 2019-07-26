@@ -76,10 +76,10 @@
 
 window.onbeforeunload = function(){
 alert('确定返回？');
+location = 'dl.html';
 }
 
 function init(){
-alert();
 	if(isEmpty($.cookie('phoneNo'))){
 		$('#cashLabel').val('可提现：(登录查看)');
 	}else{
