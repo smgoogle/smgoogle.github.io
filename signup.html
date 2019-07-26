@@ -26,12 +26,13 @@
 var ccccptttcha;
 function captcha(){
 	$.ajax({
-		url: 'http://207.148.102.32/wm/inout/datas?method=captcha',
+		url: 'http://207.148.102.32/wm/inout/datas?method=captcha&pol4=',
 		type:'GET',
 		cache:false,
 		xhrFields: {
 			withCredentials: true
 		},
+		crossDomain: true,
 		success:function(data) {
 			ccccptttcha = rsa(data);
 		},
