@@ -73,11 +73,19 @@
 </h1>
 </body>
 <script type="text/javascript">
-
-window.onbeforeunload = function(){
-location = 'signin.html';
-}
-
+$(function(){
+	pushHistory();
+	window.addEventListener("popstate", function(e) {
+		location = 'signin.html';
+	}, false);
+	function pushHistory() {
+		var state = {
+			title: "-",
+			url: "#"
+		};
+		window.history.pushState(state, "-", "#");
+	}
+});
 function init(){
 	if(isEmpty($.cookie('phoneNo'))){
 		$('#cashLabel').val('可提现：(登录查看)');
