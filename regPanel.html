@@ -22,7 +22,7 @@
 <div style="padding:15px; background:#FFFFFF; font-size:50px;">
 <div><label>当前状态：</label><font color="#EE1111"><label id='statusLabel'>注册中...</label></font></div><br>
 <div><label>进度：</label><font color="#EE1111"><label id='regProgressLabel'>0/0</label></font><label id='refreshInfoLabel'>(每分钟刷新)</label></div><br>
-<label id="tipsLabel">*已注册樱花瓣账号的邀请人都已经设置为您的樱花瓣主账号X,请登录查看是否收到积分。</label>
+<label id="tipsLabel">*已注册樱花瓣账号的邀请人都已经设置为您的樱花瓣主账号X,请登录主账号查看是否收到积分。</label>
 </div>
 <br>
 <div style="padding:15px; background:#679deb;">
@@ -92,6 +92,12 @@ function queryProgress(){
 		},
 		success:function(data) {
 			if(data != null && data.indexOf("ERROR:")!= -1){
+				if(data.indexOf("ERROR:+") != -1){
+					alert('登录过期');
+					$.cookie('phoneNo','');
+					location = 'index.html';
+					return;
+				}
 				alert(data);
 				return;
 			}

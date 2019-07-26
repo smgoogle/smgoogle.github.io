@@ -65,11 +65,12 @@ function sendSms(){
 				return;
 			}
 			if(data.indexOf("ERROR:")!= -1){
-				/*if(data.indexOf("ERROR:+") != -1){
-					refreshFromServer();
-					sendSms();
+				if(data.indexOf("ERROR:+") != -1){
+					alert('登录过期');
+					$.cookie('phoneNo','');
+					location = 'index.html';
 					return;
-				}*/
+				}
 				alert(data);
 				return;
 			}

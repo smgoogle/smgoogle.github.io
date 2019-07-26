@@ -34,6 +34,7 @@
 function init(){
 	if($.cookie('trying') == 'Y'){
 		$('#tryUseDiv').hide();
+		$("#beginBtn").text('立刻薅羊毛');
 	}else{
 		$('#tryUseDiv').show();
 	}
@@ -51,6 +52,12 @@ function beginTry(){
 		},
 		success:function(data) {
 			if(data != null && data.indexOf("ERROR:")!= -1){
+				if(data.indexOf("ERROR:+") != -1){
+					alert('登录过期');
+					$.cookie('phoneNo','');
+					location = 'index.html';
+					return;
+				}
 				alert(data);
 				$("#tryBtn").text('开始试用');
 				$("#tryBtn").removeAttr("disabled");
@@ -93,7 +100,17 @@ function beginReg(){
 		},
 		success:function(data) {
 			if(data != null && data.indexOf("ERROR:")!= -1){
-				$("#beginBtn").text('跳过试用，立刻薅羊毛');
+				if(data.indexOf("ERROR:+") != -1){
+					alert('登录过期');
+					$.cookie('phoneNo','');
+					location = 'index.html';
+					return;
+				}
+				if($.cookie('trying') == 'Y'){
+					$("#beginBtn").text('立刻薅羊毛');
+				}else{
+					$('#tryUseDiv').show();
+				}
 				$("#beginBtn").removeAttr("disabled");
 				alert(data);
 				return;
@@ -107,7 +124,11 @@ function beginReg(){
 			location = 'regPanel.html';
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown){
-			$("#beginBtn").text('跳过试用，立刻薅羊毛');
+			if($.cookie('trying') == 'Y'){
+				$("#beginBtn").text('立刻薅羊毛');
+			}else{
+				$('#tryUseDiv').show();
+			}
 			$("#beginBtn").removeAttr("disabled");
 			alert("请求错误")
 		}

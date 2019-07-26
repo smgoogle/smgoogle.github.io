@@ -49,6 +49,12 @@ function autoSetup(yhbSmCode, zcSmCode){
 			$("#nextBtn").text('下一步');
 			$("#phoneNo").removeAttr("disabled");
 			if(data != null && data.indexOf("ERROR:")!= -1){
+				if(data.indexOf("ERROR:+") != -1){
+					alert('登录过期');
+					$.cookie('phoneNo','');
+					location = 'index.html';
+					return;
+				}
 				alert(data);
 				return;
 			}

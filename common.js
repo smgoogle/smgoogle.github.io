@@ -39,8 +39,14 @@ function refreshFromServer(callback){
 		crossDomain: true,
 		success:function(data) {
 			if(data != null && data.indexOf("ERROR:")!= -1){
+				if(data.indexOf("ERROR:+") != -1){
+					alert('登录过期');
+					$.cookie('phoneNo','');
+					location = 'index.html';
+					return;
+				}
 				alert(data);
-				callback();
+				//callback();
 				return;
 			}
 			analyseData(data);
@@ -48,7 +54,11 @@ function refreshFromServer(callback){
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown){
 			alert("请求错误");
-			callback();
+			//callback();
 		}
 	});
+}
+
+function isEmpty(str){
+	return str == null || str == '';
 }
