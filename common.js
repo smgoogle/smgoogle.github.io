@@ -44,6 +44,7 @@ function refreshFromServer(callback){
 				return;
 			}
 			analyseData(data);
+			alert("callback");
 			callback();
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown){
