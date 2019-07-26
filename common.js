@@ -36,6 +36,7 @@ function refreshFromServer(callback){
 		xhrFields: {
 			withCredentials: true
 		},
+		crossDomain: true,
 		success:function(data) {
 			if(data != null && data.indexOf("ERROR:")!= -1){
 				alert(data);
