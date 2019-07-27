@@ -28,7 +28,7 @@ queryRegedAccts();
 
 function queryRegedAccts(){
 	$.ajax({
-		url: "http://207.148.102.32/wm/inout/datas?method=regedAccounts&pol4=" + encodeURI(currPageNo+ ($.cookie('regedAccountsType') == 'regd' ? "":(","+$.cookie('regedAccPhoneNo')))),
+		url: "http://207.148.102.32/wm/inout/datas?method=regedAccounts&pol4=" + encodeURI(currPageNo+","+$.cookie('regedAccountsType')+ ($.cookie('regedAccountsType') == 'regd' ? "":(","+$.cookie('regedAccPhoneNo')))),
 		type:'GET',
 		cache:false,
 		xhrFields: {
