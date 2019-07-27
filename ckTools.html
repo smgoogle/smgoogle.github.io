@@ -50,14 +50,7 @@ function init(){
 	setInterval(function (){tick();}, 60000);
 }
 function tick(){
-	leftSeconds = Number($.cookie('leftSeconds'));
-	if(leftSeconds < 0){
-		leftSeconds = 0;
-	}
-	var sec = leftSeconds; var hour = sec / 3600; sec = sec % 3600; var min = sec /60;
 
-	leftTime = Math.floor(Number(hour<10?("0"+hour):(""+hour))) + "小时" + Math.floor(Number(min<10?("0"+min):(""+min))) + "分";
-	refreshUI();
 	if($.cookie('regStatus') == '3'){
 		queryProgress();
 	}
@@ -77,6 +70,13 @@ function refreshUI(){
 	}else{
 		$('#getToolStatus').html('已领取');
 	}
+	leftSeconds = Number($.cookie('leftSeconds'));
+	if(leftSeconds < 0){
+		leftSeconds = 0;
+	}
+	var sec = leftSeconds; var hour = sec / 3600; sec = sec % 3600; var min = sec /60;
+
+	leftTime = Math.floor(Number(hour<10?("0"+hour):(""+hour))) + "小时" + Math.floor(Number(min<10?("0"+min):(""+min))) + "分";
 }
 
 function queryProgress(){
