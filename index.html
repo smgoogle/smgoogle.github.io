@@ -76,7 +76,9 @@ function init(){
 	if(isEmpty($.cookie('phoneNo'))){
 		$('#cashLabel').html('可提现：(登录查看)');
 	}else{
-		$('#cashLabel').html('可提现：¥' + $.cookie('cash'));
+		refreashFromServer(function (){
+			$('#cashLabel').html('可提现：¥' + $.cookie('cash'));
+		});
 	}
 }
 function withdraw(){

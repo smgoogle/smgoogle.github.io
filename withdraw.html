@@ -22,6 +22,9 @@ var yhbVal;
 var hbCnt = 0;
 function init(){
 queryHbVal();
+refreashFromServer(function (){
+refreshUI();
+});
 }
 function onWithdrawClick(){
 	if(isEmpty(yhbVal)){
