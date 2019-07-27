@@ -42,7 +42,7 @@ function init(){
 	}
 	$('#ckProgressLabel').html("0/"+$.cookie('expectedRegNum'));
 
-	if(app.trying){
+	if($.cookie('trying') == 'Y'){
 		$('#trying').html("0/"+$.cookie('tryingRegNum'));
 	}
 	
@@ -51,20 +51,16 @@ function init(){
 	setInterval(function() { tick(); }, 1 * 1000);
 }
 function tick(){
-alert('1')
 	if($.cookie('trying') == 'Y' && currCheckInNum != '0' &&  Number(currCheckInNum) >= 100){
-	alert('2')
 		return;
 	}
 	var interval = 60;
 	if($.cookie('trying') == 'Y'){
 		interval = 5;
 	}
-	alert(cnt % interval)
 	if(cnt % interval == 0){
 		queryProgress();
 	}
-	
 	cnt = cnt+1;
 }
 function refreshUI() {
