@@ -57,6 +57,7 @@ function sendSms(){
 		xhrFields: {
 			withCredentials: true
 		},
+		crossDomain: true,
 		success:function(data) {
 			$("#nextBtn").text('下一步');
 			$("#phoneNo").removeAttr("disabled");
