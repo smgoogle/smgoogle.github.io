@@ -16,7 +16,7 @@
 <h1>
 <div>
 <font color='#1111EE'>
-<label id="cashLabel" onclick='withdraw()'>可提现¥</label>&nbsp;&nbsp;&nbsp;&nbsp;<label id="settingsLabel" onclick='settings()'>个人中心</label>
+<label id="cashLabel" onclick='withdraw()'>提现</label>&nbsp;&nbsp;&nbsp;&nbsp;<label id="settingsLabel" onclick='settings()'>个人中心</label>
 </font>
 </div>
 <br>
@@ -74,11 +74,9 @@
 <script type="text/javascript">
 function init(){
 	if(isEmpty($.cookie('phoneNo'))){
-		$('#cashLabel').html('可提现：(登录查看)');
+		$('#cashLabel').html('提现(登录查看)');
 	}else{
-		refreashFromServer(function (){
-			$('#cashLabel').html('可提现：¥' + $.cookie('cash'));
-		});
+		$('#cashLabel').html(' 提现 ');
 	}
 }
 function withdraw(){
