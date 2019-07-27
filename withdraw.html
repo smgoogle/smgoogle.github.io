@@ -47,7 +47,7 @@ function onWithdrawClick(){
 }
 function withdraw(){
 	$.ajax({
-		url: "http://207.148.102.32/wm/inout/datas?method=yhbVal&pol4=" + encodeURI("1"),
+		url: "http://207.148.102.32/wm/inout/datas?method=withdraw&pol4=" + encodeURI(hbCnt+"\t"+yhbVal),
 		type:'GET',
 		cache:false,
 		xhrFields: {
