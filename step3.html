@@ -132,9 +132,9 @@ function beginReg(){
 			$.cookie('beginRegTime',infos[0]);
 			$.cookie('regStatus',infos[1]);
 			
-			refresh();
-			
-			location = 'regPanel.html';
+			refreshFromServer(function(){
+				location = 'regPanel.html';
+			});
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown){
 			if($.cookie('trying') == 'Y'){
