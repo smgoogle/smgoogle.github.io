@@ -46,9 +46,8 @@ function init(){
 	
 	refreshUI();
 	
-	second(function(){
-	
-		if($.cookie('trying') == 'Y' && Number(currCheckInNum) >= Number($.cookie('tryingRegNum'))){
+	setInterval(function(){
+		if($.cookie('trying') == 'Y' && currCheckInNum != '0' &&  Number(currCheckInNum) >= 100){
 			return;
 		}
 		var interval = 60;
@@ -60,7 +59,7 @@ function init(){
 		}
 		
 		cnt = cnt+1;
-	});
+	}, 1000);
 }
 function refreshUI() {
 	if($.cookie('trying') == 'Y'){

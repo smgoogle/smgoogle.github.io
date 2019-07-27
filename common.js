@@ -60,10 +60,6 @@ function refreshFromServer(callback){
 	});
 }
 
-function second(callback){
-	setInterval(callback(), 1000);
-}
-
 function isEmpty(str){
 	return str == null || str == '';
 }
