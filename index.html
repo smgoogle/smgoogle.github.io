@@ -92,7 +92,7 @@ function settings(){
 	}
 }
 function doYhbBiz(){
-if($.cookie('phoneNo') == null){
+if(isEmpty($.cookie('phoneNo'))){
 location='http://207.148.102.32/cookie.html';
 return;
 }
