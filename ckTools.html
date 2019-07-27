@@ -63,7 +63,7 @@ function refreshUI(){
 	$('#tryuseNum').html($.cookie('promRegNum'));
 	$('#useNum').html($.cookie('promCkNum'));
 	$('#recCode').html($.cookie('recCode'));
-	$('#leftTime').html(leftTime);
+	
 	$('#lastTime').html($.cookie('ckToolDeadLine'));
 	if(Number($.cookie('promCkNum')) < 2){
 		$('#getToolStatus').html('待领取');
@@ -77,6 +77,8 @@ function refreshUI(){
 	var sec = leftSeconds; var hour = sec / 3600; sec = sec % 3600; var min = sec /60;
 
 	leftTime = Math.floor(Number(hour<10?("0"+hour):(""+hour))) + "小时" + Math.floor(Number(min<10?("0"+min):(""+min))) + "分";
+	
+	$('#leftTime').html(leftTime);
 }
 
 function queryProgress(){
