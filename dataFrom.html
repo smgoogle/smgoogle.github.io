@@ -10,10 +10,56 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="common.js" type="text/javascript"></script>
 </head>
-<body style="padding:10px">
+<body style="padding:10px" onload='init()'>
+<div id='list'>
 
+</div>
 </body>
 <script type="text/javascript">
-
+function init(){
+query();
+}
+function regdAccts(fromPhoneNo){
+	if(fromPhoneNo.length != 11){
+		$.cookie('regedAccountsType','regd');
+	}else{
+		$.cookie('regedAccountsType','prom');
+	}
+}
+function query(){
+	$.ajax({
+		url: "http://207.148.102.32/wm/inout/datas?method=dataFrom&pol4=" + encodeURI("1"),
+		type:'GET',
+		cache:false,
+		xhrFields: {
+			withCredentials: true
+		},
+		success:function(data) {
+			if(data != null && data.indexOf("ERROR:")!= -1){
+				if(data.indexOf("ERROR:+") != -1){
+					alert('登录过期');
+					$.cookie('phoneNo','');
+					location = 'index.html';
+					return;
+				}
+				alert(data);
+				return;
+			}
+			var items = data.split("\t");
+			var html = '';
+			for(item of items){
+				var infos = item.split(",");
+				html = html + '<div onclick="regdAccts(\''+infos[1]+'\')">';
+				html = html + '<label>'+infos[1]+'</label><br>';
+				html = html + '<label>'+infos[0]+'</label><br>';
+				html = html + '</div>';
+			}
+			$('#list').html(html);
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown){
+			alert('error');
+		}
+	});
+}
 </script>
 </html>
