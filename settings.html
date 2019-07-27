@@ -13,7 +13,7 @@
 <body style="padding:10px;background:#F0F0F0;" onload='init()'>
 <h1>
 <div style='padding:15px; background:#FFFFFF;font-size:50px;' onclick='location="withdraw.html"'>
-<label>提现</label></div><br>
+<label id='withdrawLabel'>提现</label></div><br>
 <div style='padding:15px; background:#FFFFFF;font-size:50px;'>
 <label>推荐码：</label><label id='recCodeLabel'>0</label></div><br>
 </h1>
@@ -21,6 +21,7 @@
 <script type="text/javascript">
 function init(){
 $('#recCodeLabel').html($.cookie('recCode'));
+$('#withdrawLabel').html("(¥"+$.cookie('cash')+")");
 }
 </script>
 </html>
