@@ -46,7 +46,7 @@ function init(){
 	}
 	$('#regProgressLabel').html($.cookie('currRegNum')+'/'+$.cookie('expectedRegNum'));
 	$('#tipsLabel').html($('#tipsLabel').html().replace('X',$.cookie('phoneNo')));
-	var interval = 0;
+	var interval = 60;
 	if(trying()){
 		$('#getCkToolsDiv').hide();
 		$('#refreshInfoLabel').html('(每5秒钟刷新)');
@@ -57,11 +57,12 @@ function init(){
 		interval = 60;
 		setTimeout(tick(), 5000 )
 	}
-	setInterval(tick(), interval * 1000);
+	setInterval(function (){tick();}, interval * 1000);
 }
 
 function tick(){
 	refreshUI();
+	alert($.cookie('tryingRegStatus'))
 	if($.cookie('regStatus') == '2' || $.cookie('tryingRegStatus') == '2'){
 		queryProgress();
 	}
