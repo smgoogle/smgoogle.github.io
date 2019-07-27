@@ -8,6 +8,7 @@
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js" type="text/javascript"></script>
 <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js" type="text/javascript"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="common.js" type="text/javascript"></script>
 </head>
 <body style="padding:10px" onload = "init()">
 <div style="font-size:50px;"><label id="infoLabel">您的账号已注册...</label></div><br><br><br>
@@ -36,6 +37,7 @@ function next(){
 	if(!trying() && $.cookie('regStatus') != '0'){
 		alert('网页失效，请返回重试');
 		location = 'index.html';
+		return;
 	}
 
 	var info = '您的';
