@@ -54,10 +54,6 @@ function tick(){
 	if($.cookie('regStatus') == '3'){
 		queryProgress();
 	}
-	
-	if(Number($.cookie('promCkNum')) > 2){
-		location = 'ckStatus.html';
-	}
 }
 function refreshUI(){
 	$('#tryuseNum').html($.cookie('promRegNum'));
@@ -69,6 +65,7 @@ function refreshUI(){
 		$('#getToolStatus').html('待领取');
 	}else{
 		$('#getToolStatus').html('已领取');
+		location = 'ckStatus.html';
 	}
 	leftSeconds = Number($.cookie('leftSeconds'));
 	if(leftSeconds < 0){
