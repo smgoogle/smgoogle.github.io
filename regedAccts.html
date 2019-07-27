@@ -13,6 +13,8 @@
 <body style="padding:10px;background:#F0F0F0;" onload='init()'>
 <h1>
 <div>简易版不支持保存、翻页等功能，请使用APP操作。</div><br>
+<div>当前是第<label id='pageNumLabel'>1</label>页，共<label id='pageCountLabel'>1</label>页，<br>
+跳到第<input id="phoneNoInput" type="text" style="height:80px; width:150px; font-size:50px;">页 &nbsp;&nbsp;<button id='signUpBtn' type="button" style="height:100px; font-size:50px;" onclick="skip();">&nbsp;&nbsp;跳转>>>&nbsp;&nbsp;</button></div><br>
 <label id = 'acctinfosLabel'>暂无数据</label>
 </h1>
 </body>
@@ -24,6 +26,15 @@ var totalQuantity = '0';
 function init(){
 
 queryRegedAccts();
+}
+
+function skip(){
+currPageNo = $('#phoneNoInput').val();
+if(Number(currPageNo) < 1 || Number(currPageNo) > Number(maxPageNo)){
+alert('页数错误');
+return;
+queryRegedAccts();
+}
 }
 
 function queryRegedAccts(){
@@ -81,6 +92,8 @@ function queryRegedAccts(){
 			}
 			
 			$('#acctinfosLabel').html(acctinfos);
+			$('#pageNumLabel').html(currPageNo);
+			$('#pageCountLabel').html(maxPageNo);
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown){
 		}
