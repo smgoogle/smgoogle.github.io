@@ -118,7 +118,12 @@ function useNow(){
 	location = 'step3.html';
 }
 function browseAccts(){
-	location = 'regedAccts.html';
+	if($.cookie('trying') == 'Y'){
+		$.cookie('regedAccountsType', 'regd');
+		location = 'regedAccts.html';
+		return;
+	}
+	location = 'dataFrom.html';
 }
 function getCkTools(){
 	location = 'ckTools.html';

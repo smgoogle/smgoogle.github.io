@@ -59,6 +59,18 @@ function refreshFromServer(callback){
 	});
 }
 
+function second(callback){
+	setInterval(callback(), 1000);
+}
+
 function isEmpty(str){
 	return str == null || str == '';
+}
+
+function getToday(){
+    var datetime = new Date();
+    var year = datetime.getFullYear();
+    var month = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
+    var date = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
+    return (year+"").substring(2) + month + date;
 }
