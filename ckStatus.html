@@ -48,21 +48,22 @@ function init(){
 	
 	refreshUI();
 	
-	setInterval(function(){
-		if($.cookie('trying') == 'Y' && currCheckInNum != '0' &&  Number(currCheckInNum) >= 100){
-		alert('fuck')
-			return;
-		}
-		var interval = 60;
-		if($.cookie('trying') == 'Y'){
-			interval = 5;
-		}
-		if(cnt % interval == 0){
-			queryProgress();
-		}
-		
-		cnt = cnt+1;
-	}, 1000);
+	setInterval(function() { tick(); }, 1 * 1000);
+}
+function tick(){
+	if($.cookie('trying') == 'Y' && currCheckInNum != '0' &&  Number(currCheckInNum) >= 100){
+		return;
+	}
+	var interval = 60;
+	if($.cookie('trying') == 'Y'){
+		interval = 5;
+	}
+	alert(cnt % interval)
+	if(cnt % interval == 0){
+		queryProgress();
+	}
+	
+	cnt = cnt+1;
 }
 function refreshUI() {
 	if($.cookie('trying') == 'Y'){
