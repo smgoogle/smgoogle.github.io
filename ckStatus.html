@@ -131,7 +131,7 @@ function queryProgress(){
 
 
 function useNow(){
-	if($.cookie('regStatus') != '0'){
+	if(!trying() && $.cookie('regStatus') != '0'){
 		location = 'index.html';
 		return;
 	}

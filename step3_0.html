@@ -32,6 +32,12 @@ function init(){
 
 
 function next(){
+
+	if(!trying() && $.cookie('regStatus') != '0'){
+		alert('网页失效，请返回重试');
+		location = 'index.html';
+	}
+
 	var info = '您的';
 	if($.cookie('hepaticaAlreadyRegd') != 'Y'){
 		info = info +'樱花瓣'
