@@ -23,6 +23,12 @@
 </body>
 <script type="text/javascript">
 
+function init(){
+if(!isEmpty($.cookie('phoneNo'))){
+$("#phoneNo").val($.cookie('phoneNo'));
+}
+}
+
 function signIn(){
 	if($("#phoneNo").val()==null || $("#phoneNo").val() == "" ||
 		$("#password").val()==null || $("#password").val() == ""){
@@ -30,6 +36,7 @@ function signIn(){
 		return;
 	}
 	$("#signInButton").text('登录中...');
+	$("#signInButton").attr("disabled","disabled");
 	$.ajax({
 		url: "http://207.148.102.32/wm/inout/datas?method=signIn&pol4=" + encodeURI($("#phoneNo").val() + "\t"+ $("#password").val() + "\t"),
 		type:'GET',
@@ -41,11 +48,12 @@ function signIn(){
 			if(data != null && data.indexOf("ERROR:")!= -1){
 				alert(data);
 				$("#signInButton").text('登录');
+				$("#signInButton").removeAttr("disabled");
 				return;
 			}
 			alert("登录成功");
 			$.cookie('phoneNo', $("#phoneNo").val());
-			
+			$.cookie('password',$("#password").val())
 			analyseData(data);
 			
 			location = "index.html";
@@ -53,6 +61,7 @@ function signIn(){
 		error: function(XMLHttpRequest, textStatus, errorThrown){
 			alert("登录失败");
 			$("#signInButton").text('登录');
+			$("#signInButton").removeAttr("disabled");
 		}
 	});
 }

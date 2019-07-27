@@ -33,6 +33,8 @@ var lastCkDate;
 var cnt = 0;
 function init(){
 
+	queryProgress();
+
 	if($.cookie('trying') == 'Y'){
 		$('#useButton').show();
 	}else{
@@ -48,6 +50,7 @@ function init(){
 	
 	setInterval(function(){
 		if($.cookie('trying') == 'Y' && currCheckInNum != '0' &&  Number(currCheckInNum) >= 100){
+		alert('fuck')
 			return;
 		}
 		var interval = 60;

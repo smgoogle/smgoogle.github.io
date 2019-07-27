@@ -20,7 +20,7 @@
 <input id="password" type="password" class="form-control input-lg has-success" style="height:80px; font-size:50px;" placeholder="登录密码"><br>
 <input id="rePassword" type="password" class="form-control input-lg has-success" style="height:80px; font-size:50px;" placeholder="重复登录密码"><br>
 <div style="font-size:50px;"><font color='#EE1111'>请一定一定记住您的密码！以后如果修改为新密码是需要验证此密码的！！</font></div><br>
-<button type="button"  class="form-control input-lg"  style="height:100px; font-size:50px; color:#FFF; background:#679deb;" onclick="signUp();">注册</button>
+<button id='signUpBtn' type="button"  class="form-control input-lg"  style="height:100px; font-size:50px; color:#FFF; background:#679deb;" onclick="signUp();">注册</button>
 </body>
 <script type="text/javascript">
 var ccccptttcha;
@@ -58,6 +58,8 @@ function signUp(){
 		return;
 	}
 	//alert(ccccptttcha)
+	$("#signUpBtn").text('登录中...');
+	$("#signUpBtn").attr("disabled","disabled");
 	$.ajax({
 		url: "http://207.148.102.32/wm/inout/datas?method=signUp&pol4=" + encodeURI($("#phoneNo").val() + "\t"+ $("#password").val() + "\t"+"1"+"\t" + ccccptttcha),
 		type:'GET',
@@ -77,17 +79,21 @@ function signUp(){
 				}else{
 					alert(data);
 				}
-				$("#signInButton").text('注册');
+				$("#signUpBtn").text('注册');
+				$("#signUpBtn").removeAttr("disabled");
 				captcha();
 				return;
 			}
 			alert("注册成功");
+			
+			$.cookie('phoneNo',$("#phoneNo").val());
 			location = "index.html";
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown){
 			captcha();
 			alert("注册失败请重试")
-			$("#signInButton").text('注册');
+			$("#signUpBtn").text('注册');
+			$("#signUpBtn").removeAttr("disabled");
 		}
 	});
 }
