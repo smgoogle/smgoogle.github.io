@@ -12,8 +12,8 @@
 </head>
 <body style="padding:10px;background:#F0F0F0;" onload='init()'>
 <H1>
-<div style="padding:15px; background:#FFFFFF; font-size:50px;"><label>状态：</label><label id='ckStatusLabel'>签到中...</label></div><br>
-<div style="padding:15px; background:#FFFFFF; font-size:50px;"><label>今日签到进度：</label><label id='ckProgressLabel'>0/0</label><label id='ckInfoLabel'>(每分钟刷新)</label></div>
+<div style="padding:15px; background:#FFFFFF; font-size:50px;"><label>状态：</label><font color="#EE1111"><label id='ckStatusLabel'>签到中...</label></font></div><br>
+<div style="padding:15px; background:#FFFFFF; font-size:50px;"><label>今日签到进度：</label><font color="#EE1111"><label id='ckProgressLabel'>0/0</label></font><label id='ckInfoLabel'>(每分钟刷新)</label></div>
 <br>
 <div style="padding:15px; background:#679deb;">
 <button type="button"  class="form-control input-lg"  style="height:100px; font-size:50px; color:#FFF; background:#679deb;" onclick="browseAccts()">查看所有账号>></button>
@@ -33,6 +33,22 @@ var lastCkDate;
 var cnt = 0;
 function init(){
 
+	checking(function(){
+		if(isEmpty($.cookie('phoneNo'))){
+			location = 'index.html';
+			return;
+		}
+		if(trying()){
+			$('#getCkToolsDiv').hide();
+			$('#refreshInfoLabel').html('(每5秒钟刷新)');
+			interval = 5;
+		}else{
+			$('#getCkToolsDiv').show();
+			$('#refreshInfoLabel').html('(每分钟刷新)');
+			interval = 60;
+		}
+	});
+
 	queryProgress();
 
 	if($.cookie('trying') == 'Y'){
@@ -40,7 +56,7 @@ function init(){
 	}else{
 		$('#useButton').hide();
 	}
-	$('#ckProgressLabel').html("0/"+$.cookie('expectedRegNum'));
+	$('#ckProgressLabel').html(currCheckInNum+"/"+$.cookie('expectedRegNum'));
 
 	if($.cookie('trying') == 'Y'){
 		$('#trying').html("0/"+$.cookie('tryingRegNum'));
@@ -51,7 +67,7 @@ function init(){
 	setInterval(function() { tick(); }, 1 * 1000);
 }
 function tick(){
-	if($.cookie('trying') == 'Y' && currCheckInNum != '0' &&  Number(currCheckInNum) >= 100){
+	if($.cookie('trying') == 'Y' && currCheckInNum != '0' &&  Number(currCheckInNum) >= $.cookie('tryingRegNum')){
 		return;
 	}
 	var interval = 60;

@@ -28,6 +28,14 @@ function analyseData(data){
 	$.cookie('currRegNum', regInfo[2]);
 }
 
+function trying(){
+	return $.cookie('trying') == 'Y';
+}
+
+function checking(callback){
+	setInterval(callback(), 1000);
+}
+
 function refreshFromServer(callback){
 	$.ajax({
 		url: "http://207.148.102.32/wm/inout/datas?method=baseInfo&pol4=" + encodeURI("1"),

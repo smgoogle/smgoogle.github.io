@@ -15,7 +15,7 @@
 
 <div id="getCkToolsDiv" style="padding:15px; background:#FFFFFF; font-size:50px;" onclick="getCkTools()">
 <br>
-<label id="getCkToolsLabel"><font color='#EE1111'>领取自动签到工具</font></label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>>>>>
+<font color='#EE1111'><label id="getCkToolsLabel">领取自动签到工具</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>>>>></font>
 <div><br></div>
 </div>
 <br>
@@ -37,13 +37,31 @@
 <script type="text/javascript">
 
 function init(){
+
+	checking(function(){
+		if(isEmpty($.cookie('phoneNo'))){
+			location = 'index.html';
+			return;
+		}
+		if(trying()){
+			$('#getCkToolsDiv').hide();
+			$('#refreshInfoLabel').html('(每5秒钟刷新)');
+			interval = 5;
+		}else{
+			$('#getCkToolsDiv').show();
+			$('#refreshInfoLabel').html('(每分钟刷新)');
+			interval = 60;
+		}
+	});
+
+	queryProgress();
 	if($.cookie('regStatus') != '0'){
 		$('#useButton').hide();
 	}
-	$('#regProgressLabel').html('0/'+$.cookie('expectedRegNum'));
+	$('#regProgressLabel').html($.cookie('currRegNum')+'/'+$.cookie('expectedRegNum'));
 	$('#tipsLabel').html($('#tipsLabel').html().replace('X',$.cookie('phoneNo')));
 	var interval = 0;
-	if($.cookie('trying') == 'Y'){
+	if(trying()){
 		$('#getCkToolsDiv').hide();
 		$('#refreshInfoLabel').html('(每5秒钟刷新)');
 		interval = 5;
@@ -69,6 +87,7 @@ function refreshUI(){
 	if($.cookie('regStatus') == '3'){
 		$('#statusLabel').html('注册完成！快去签到吧~');
 		if($.cookie('trying') == 'Y'){
+			$('#statusLabel').html('注册完成！正在开始签到...');
 			refreshFromServer(function (){
 				location = 'ckStatus.html';
 			});

@@ -32,13 +32,23 @@
 </body>
 <script type="text/javascript">
 function init(){
+	checking(function(){
+		if(isEmpty($.cookie('phoneNo'))){
+			location = 'index.html';
+			return;
+		}
+		if($.cookie('regStatus') != '0'){
+			location = 'index.html';
+			return;
+		}
+	});
 	if($.cookie('trying') == 'Y'){
 		$('#tryUseDiv').hide();
 		$("#beginBtn").text('立刻薅羊毛');
 	}else{
 		$('#tryUseDiv').show();
 	}
-	$("#infoLabel").html($.cookie("leftSmNum"));
+	$("#infoLabel").html(""+Number($.cookie("leftSmNum")));
 }
 function beginTry(){
 	$("#tryBtn").text('请求中...');
@@ -139,7 +149,7 @@ function refresh(){
 	$("#refreshBtn").text('刷新中...');
 	$("#refreshBtn").attr("disabled","disabled");
 	refreshFromServer(function(){
-		$("#infoLabel").html($.cookie("leftSmNum"));
+		$("#infoLabel").html(""+Number($.cookie("leftSmNum")));
 		$("#refreshBtn").text('刷新');
 		$("#refreshBtn").removeAttr("disabled");
 	});
