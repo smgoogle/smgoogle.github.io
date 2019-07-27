@@ -40,7 +40,7 @@ function init(){
 	if($.cookie('regStatus') != '0'){
 		$('#useButton').hide();
 	}
-	
+	$('#regProgressLabel').html('0/'+$.cookie('expectedRegNum'));
 	$('#tipsLabel').html($('#tipsLabel').html().replace('X',$.cookie('phoneNo')));
 	var interval = 0;
 	if($.cookie('trying') == 'Y'){
