@@ -25,6 +25,8 @@ function regdAccts(fromPhoneNo){
 	}else{
 		$.cookie('regedAccountsType','prom');
 	}
+	$.cookie('regedAccPhoneNo',fromPhoneNo);
+	location = 'regedAccts.html';
 }
 function query(){
 	$.ajax({
@@ -49,9 +51,13 @@ function query(){
 			var html = '';
 			for(item of items){
 				var infos = item.split(",");
+				
 				html = html + '<div style="padding:10px;background:#FFFFFF;" onclick="regdAccts(\''+infos[1]+'\')">';
-				html = html + '<label>'+infos[1]+'</label><br>';
-				html = html + '<label>'+infos[0]+'</label><br>';
+				if(infos[1].length == 11){
+					infos[1] = infos[1].substring(0, 6)+"****"+infos[1].substring(10);
+				}
+				html = html + '<label>来自：'+infos[1]+'</label><br>';
+				html = html + '<label>数量：'+infos[0]+'</label><br>';
 				html = html + '</div>';
 			}
 			$('#list').html(html);
