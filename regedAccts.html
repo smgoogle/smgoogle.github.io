@@ -66,13 +66,13 @@ function queryRegedAccts(){
                 var info = "账号：【" + regionNo + " " + regedNoInfoItems[0] +
                         "】，密码：【" + regedNoInfoItems[1] +
                         "】，交易密码：【" + regedNoInfoItems[2] +
-                        "】，账号状态：【" + (regedNoInfoItems[3].equals("1")?"正常":"已释放") +
-                        "】，今日签到状态：【" + (regedNoInfoItems[4].equals("1")?"已签到":"未签到") +
+                        "】，账号状态：【" + (regedNoInfoItems[3]== "1" ?"正常":"已释放") +
+                        "】，今日签到状态：【" + (regedNoInfoItems[4] == "1" ?"已签到":"未签到") +
                         "】，连续签到天数：【" + continueDays +
                         "】，累计签到天数：【" + regedNoInfoItems[6] +
                         "】，邀请人：【"+ regedNoInfoItems[7]+"】";
 
-                if("0".equals(continueDays)){
+                if("0" == continueDays){
                     info = info.replace("【正常】","【临时用户】");
                 }
 				info = info + "<br>";
