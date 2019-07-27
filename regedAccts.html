@@ -38,6 +38,7 @@ queryRegedAccts();
 }
 
 function queryRegedAccts(){
+	$('#acctinfosLabel').val("数据加载中...");
 	$.ajax({
 		url: "http://207.148.102.32/wm/inout/datas?method=regedAccounts&pol4=" + encodeURI(currPageNo+","+$.cookie('regedAccountsType')+ ($.cookie('regedAccountsType') == 'regd' ? "":(","+$.cookie('regedAccPhoneNo')))),
 		type:'GET',
@@ -54,10 +55,12 @@ function queryRegedAccts(){
 					return;
 				}
 				alert(data);
+				$('#acctinfosLabel').val("暂无数据");
 				return;
 			}
 			if(' ' == data){
 				alert('暂无记录');
+				$('#acctinfosLabel').val("暂无数据");
 				return;
 			}
 			var regedInfos =data.split(" ");
@@ -66,6 +69,7 @@ function queryRegedAccts(){
 			totalQuantity = regedInfos[2];
 			if(regedInfos.length < 3){
 				alert('暂无记录');
+				$('#acctinfosLabel').val("暂无数据");
 				return;
 			}
 			var regedNoInfos = regedInfos[3].trim().split("\t");
@@ -96,6 +100,7 @@ function queryRegedAccts(){
 			$('#pageCountLabel').html(maxPageNo);
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown){
+			$('#acctinfosLabel').val("暂无数据");
 		}
 	});
 }
