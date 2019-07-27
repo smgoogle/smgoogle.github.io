@@ -38,22 +38,6 @@
 
 function init(){
 
-	checking(function(){
-		if(isEmpty($.cookie('phoneNo'))){
-			location = 'index.html';
-			return;
-		}
-		if(trying()){
-			$('#getCkToolsDiv').hide();
-			$('#refreshInfoLabel').html('(每5秒钟刷新)');
-			interval = 5;
-		}else{
-			$('#getCkToolsDiv').show();
-			$('#refreshInfoLabel').html('(每分钟刷新)');
-			interval = 60;
-		}
-	});
-
 	queryProgress();
 	if($.cookie('regStatus') != '0'){
 		$('#useButton').hide();
@@ -80,7 +64,7 @@ function tick(){
 	}
 }
 function refreshUI(){
-
+	
 	if($.cookie('regStatus') == '2'){
 		$('#statusLabel').html('注册中...');
 	}
@@ -134,6 +118,10 @@ function queryProgress(){
 	});
 }
 function useNow(){
+	if($.cookie('regStatus') != '0'){
+		location = 'index.html';
+		return;
+	}
 	location = 'step3.html';
 }
 function browseAccts(){

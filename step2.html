@@ -22,13 +22,6 @@
 </body>
 <script type="text/javascript">
 function init(){
-
-	checking(function (){
-		if($.cookie('smAccountSetted') == 'Y'){
-			location = 'index.html';
-		}
-	});
-
 	if($.cookie('zcAlreadyRegd') == 'Y'){
 		$('#zcCodeTitle').hide();
 		$('#zcCode').hide();
@@ -78,6 +71,11 @@ function autoSetup(yhbSmCode, zcSmCode){
 	});
 }
 function next(){
+	if($.cookie('smAccountSetted') == 'Y'){
+		location = 'index.html';
+		return;
+	}
+
 	var zcCode = $('#zcCode').val();
 	var yhbCode = $('#hepaticaCode').val();
 	

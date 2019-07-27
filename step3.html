@@ -32,16 +32,6 @@
 </body>
 <script type="text/javascript">
 function init(){
-	checking(function(){
-		if(isEmpty($.cookie('phoneNo'))){
-			location = 'index.html';
-			return;
-		}
-		if($.cookie('regStatus') != '0'){
-			location = 'index.html';
-			return;
-		}
-	});
 	if($.cookie('trying') == 'Y'){
 		$('#tryUseDiv').hide();
 		$("#beginBtn").text('立刻薅羊毛');
@@ -51,6 +41,13 @@ function init(){
 	$("#infoLabel").html(""+Number($.cookie("leftSmNum")));
 }
 function beginTry(){
+
+	if(trying()){
+		alert("网页失效，请返回首页刷新");
+		location = "index.html";
+		return;
+	}
+
 	$("#tryBtn").text('请求中...');
 	$("#tryBtn").attr("disabled","disabled");
 	$.ajax({
@@ -84,6 +81,12 @@ function beginTry(){
 	});
 }
 function beginReg(){
+
+	if($.cookie('regStatus') != '0'){
+		alert("网页失效，请返回首页刷新");
+		location = "index.html";
+		return;
+	}
 
 	if($("#regNum").val() == null || $("#regNum").val() == '' || $("#regNum").val() == '0'){
 		alert("请输入数量");
