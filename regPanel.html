@@ -39,7 +39,9 @@
 function init(){
 
 	//queryProgress();
-	if($.cookie('regStatus') != '0'){
+	if(trying()){
+		$('#useButton').show();
+	}else{
 		$('#useButton').hide();
 	}
 	$('#regProgressLabel').html($.cookie('currRegNum')+'/'+$.cookie('expectedRegNum'));

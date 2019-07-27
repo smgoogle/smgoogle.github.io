@@ -111,7 +111,6 @@ function beginReg(){
 		xhrFields: {
 			withCredentials: true
 		},
-		crossDomain: true,
 		success:function(data) {
 			if(data != null && data.indexOf("ERROR:")!= -1){
 				if(data.indexOf("ERROR:+") != -1){
