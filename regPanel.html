@@ -62,7 +62,6 @@ function init(){
 
 function tick(){
 	refreshUI();
-	alert($.cookie('tryingRegStatus'))
 	if($.cookie('regStatus') == '2' || $.cookie('tryingRegStatus') == '2'){
 		queryProgress();
 	}
@@ -118,6 +117,7 @@ function queryProgress(){
 			refreshUI();
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown){
+			alert('error');
 		}
 	});
 }
