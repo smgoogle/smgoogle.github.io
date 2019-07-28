@@ -47,6 +47,12 @@ function beginTry(){
 		location = "index.html";
 		return;
 	}
+	
+	if($.cookie('regStatus') != '0'){
+		alert("网页失效，请返回首页刷新");
+		location = "index.html";
+		return;
+	}
 
 	$("#tryBtn").text('请求中...');
 	$("#tryBtn").attr("disabled","disabled");
