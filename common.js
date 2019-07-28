@@ -1,4 +1,6 @@
 
+var baseUrl = 'http://207.148.102.32/wm/inout/datas?method=';
+var baseIp = '207.148.102.32';
 function analyseData(data){
 	var signResult = data.split("\n")
 	var baseInfos = signResult[0].split(",");
@@ -34,7 +36,7 @@ function trying(){
 
 function refreshFromServer(callback){
 	$.ajax({
-		url: "http://207.148.102.32/wm/inout/datas?method=baseInfo&pol4=" + encodeURI("1"),
+		url: baseUrl + "baseInfo&pol4=" + encodeURI("1"),
 		type:'GET',
 		async:true,
 		cache:false,

@@ -57,7 +57,7 @@ function beginTry(){
 	$("#tryBtn").text('请求中...');
 	$("#tryBtn").attr("disabled","disabled");
 	$.ajax({
-		url: "http://207.148.102.32/wm/inout/datas?method=beginTrying&pol4=" + encodeURI("1"),
+		url: baseUrl + "beginTrying&pol4=" + encodeURI("1"),
 		type:'GET',
 		cache:false,
 		xhrFields: {
@@ -111,7 +111,7 @@ function beginReg(){
 	$("#beginBtn").text('请求中...');
 	$("#beginBtn").attr("disabled","disabled");
 	$.ajax({
-		url: "http://207.148.102.32/wm/inout/datas?method=beginReg1&pol4=" + encodeURI($("#regNum").val()),
+		url: baseUrl + "beginReg1&pol4=" + encodeURI($("#regNum").val()),
 		type:'GET',
 		cache:false,
 		xhrFields: {

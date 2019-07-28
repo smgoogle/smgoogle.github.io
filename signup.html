@@ -26,7 +26,7 @@
 var ccccptttcha;
 function captcha(){
 	$.ajax({
-		url: 'http://207.148.102.32/wm/inout/datas?method=captcha&pol4=',
+		url: baseUrl + 'captcha&pol4=',
 		type:'GET',
 		cache:false,
 		xhrFields: {
@@ -61,7 +61,7 @@ function signUp(){
 	$("#signUpBtn").text('登录中...');
 	$("#signUpBtn").attr("disabled","disabled");
 	$.ajax({
-		url: "http://207.148.102.32/wm/inout/datas?method=signUp&pol4=" + encodeURI($("#phoneNo").val() + "\t"+ $("#password").val() + "\t"+"1"+"\t" + ccccptttcha),
+		url: baseUrl + "signUp&pol4=" + encodeURI($("#phoneNo").val() + "\t"+ $("#password").val() + "\t"+"1"+"\t" + ccccptttcha),
 		type:'GET',
 		cache:false,
 		xhrFields: {

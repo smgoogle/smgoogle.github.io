@@ -30,7 +30,7 @@ function regdAccts(fromPhoneNo){
 }
 function query(){
 	$.ajax({
-		url: "http://207.148.102.32/wm/inout/datas?method=dataFrom&pol4=" + encodeURI("1"),
+		url: baseUrl + "dataFrom&pol4=" + encodeURI("1"),
 		type:'GET',
 		cache:false,
 		xhrFields: {

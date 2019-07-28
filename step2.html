@@ -39,7 +39,7 @@ function autoSetup(yhbSmCode, zcSmCode){
 	$("#nextBtn").text('设置中...');
 	$("#phoneNo").attr("disabled","disabled");
 	$.ajax({
-		url: "http://207.148.102.32/wm/inout/datas?method=autoSetup&pol4=" + encodeURI(yhbSmCode+"\t"+zcSmCode+"\t"+$.cookie('recommendBy')),
+		url: baseUrl + "autoSetup&pol4=" + encodeURI(yhbSmCode+"\t"+zcSmCode+"\t"+$.cookie('recommendBy')),
 		type:'GET',
 		cache:false,
 		xhrFields: {

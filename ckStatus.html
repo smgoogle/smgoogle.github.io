@@ -99,7 +99,7 @@ function refreshUI() {
 
 function queryProgress(){
 	$.ajax({
-		url: "http://207.148.102.32/wm/inout/datas?method=ckProgress&pol4=" + encodeURI("1"),
+		url: baseUrl + "ckProgress&pol4=" + encodeURI("1"),
 		type:'GET',
 		cache:false,
 		xhrFields: {

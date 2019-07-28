@@ -29,7 +29,7 @@ function next(){
 		return;
 	}
 	$.ajax({
-		url: "http://207.148.102.32/wm/inout/datas?method=verifyZcPassword&pol4=" + encodeURI($("#zcPassword").val()),
+		url: baseUrl + "verifyZcPassword&pol4=" + encodeURI($("#zcPassword").val()),
 		type:'GET',
 		cache:false,
 		xhrFields: {
