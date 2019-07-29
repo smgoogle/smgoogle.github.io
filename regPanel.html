@@ -11,6 +11,7 @@
 <script src="common.js" type="text/javascript"></script>
 </head>
 <body style="padding:10px;background:#F0F0F0;" onload="init()">
+<div style="font-size:50px;"><a href='dlapps.html'>下载樱花瓣、智码 >></a></div><br>
 <h1>
 <div style="font-size:50px;">
 <label onclick='location="index.html"'><<返回首页</label></div><br><br>
@@ -23,7 +24,7 @@
 <div style="padding:15px; background:#FFFFFF; font-size:50px;">
 <div><label>当前状态：</label><font color="#EE1111"><label id='statusLabel'>注册中...</label></font></div><br>
 <div><label>进度：</label><font color="#EE1111"><label id='regProgressLabel'>0/0</label></font><label id='refreshInfoLabel'>(每分钟刷新)</label></div><br>
-<label id="tipsLabel">*已注册樱花瓣账号的邀请人都已经设置为您的樱花瓣主账号X,请登录主账号查看是否收到积分。</label>
+<label id="tipsLabel">*已注册樱花瓣账号的邀请人都已经设置为您的樱花瓣主账号X,请登录主账号查看是否收到花瓣。</label>
 </div>
 <br>
 <div style="padding:15px; background:#679deb;">
@@ -84,7 +85,6 @@ function refreshUI(){
 	}
 	
 	$('#regProgressLabel').html($.cookie('currRegNum')+'/'+$.cookie('expectedRegNum'));
-	
 	if(Number($.cookie('promCkNum')) >= 2){
 		$('#getCkToolsLabel').html('已领取！查看当前签到进度');
 	}

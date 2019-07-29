@@ -17,7 +17,7 @@
 <div style="font-size:50px;">请确保此号码可以正常接收短信。</div><br><br>
 <div style="font-size:50px;">是谁推荐您使用的此工具？请填写您的推荐人的推荐码：</div><br>
 <input id="recBy" type="text" class="form-control input-lg has-success" style="height:80px; font-size:50px;" placeholder="推荐人推荐码"><br>
-<div style="font-size:40px;">为了您推荐人的利益请准确填写推荐码。如果您没有推荐人请填写0，且10分钟后才能进行下一步。</div><br><br>
+<div style="font-size:40px;"><font color='#EE1111'>您如果没有填写推荐人的推荐码，我们将为您随机分配一个，但您将少获得5%的注册量。所以为了您自己和推荐人的利益，请填写正确的推荐码。(推荐码可以向您的推荐人要)</font></div><br><br>
 <button id="nextBtn" type="button"  class="form-control input-lg"  style="height:100px; font-size:50px; color:#FFF; background:#679deb;" onclick="next()">下一步</button>
 </h1>
 </body>
@@ -41,11 +41,6 @@ if(trying() || $.cookie('regStatus') != '0'){
 	return;
 }
 
-var timeSpan = Math.floor(Number(((new Date()).getTime() - $.cookie('enterTime'))/1000));
-if(($("#recBy").val()==null || $("#recBy").val() == "" || $("#recBy").val() == "0") && timeSpan < 8*60){
-alert("您没有填写推荐人推荐码，请继续等待" + Math.floor((600 - timeSpan)/60 + 1) + "分钟");
-return;
-}
 if($("#recBy").val()==null || $("#recBy").val() == ""){
 $("#recBy").text("0");
 }
