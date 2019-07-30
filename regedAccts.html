@@ -88,8 +88,10 @@ function queryRegedAccts(){
                         "】，邀请人：【"+ regedNoInfoItems[7]+"】";
 
                 if("0" == continueDays){
-                    info = info.replace("【正常】","<font color='#EE1111'>【临时用户】</font>");
+                    info = info.replace("【正常】","<font color='#EE82EE'>【临时用户】</font>");
+					info = info.replace("【已释放】","<font color='#EE1111'>【已释放】</font>");
                 }
+				
 				info = info + "<br><br>";
 				
 				acctinfos = acctinfos + info;
