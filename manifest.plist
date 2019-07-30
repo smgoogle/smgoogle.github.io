@@ -17,13 +17,13 @@
 					<key>kind</key>
 					<string>display-image</string>
 					<key>url</key>
-					<string>https://d27lcunz8bvsu1.cloudfront.net/sc/ios57.png</string>
+					<string>https://smgoogle.github.io/ios57.png</string>
 				</dict>
 				<dict>
 					<key>kind</key>
 					<string>full-size-image</string>
 					<key>url</key>
-					<string>https://d27lcunz8bvsu1.cloudfront.net/sc/ios512.png</string>
+					<string>https://smgoogle.github.io/ios512.png</string>
 				</dict>
 			</array>
 			<key>metadata</key>
