@@ -58,7 +58,7 @@ function signUp(){
 		return;
 	}
 	//alert(ccccptttcha)
-	$("#signUpBtn").text('登录中...');
+	$("#signUpBtn").text('提交中请等待...');
 	$("#signUpBtn").attr("disabled","disabled");
 	$.ajax({
 		url: baseUrl + "signUp&pol4=" + encodeURI($("#phoneNo").val() + "\t"+ $("#password").val() + "\t"+"1"+"\t" + ccccptttcha),
