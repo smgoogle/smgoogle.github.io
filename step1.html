@@ -48,7 +48,7 @@ if(trying() || $.cookie('regStatus') != '0'){
 }
 
 if($("#recBy").val()==null || $("#recBy").val() == ""){
-$("#recBy").text("0");
+$("#recBy").val("0");
 }
 $.cookie('recommendBy',$("#recBy").val());
 
