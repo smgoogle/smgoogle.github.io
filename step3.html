@@ -25,7 +25,7 @@
 <button id="refreshBtn" type="button" style="height:80px; font-size:50px;" onclick="refresh()">刷新</button></div>
 <div style="font-size:50px;">请输入注册数量：</div>
 <input id="regNum" type="text" class="form-control input-lg has-success" style="height:80px; font-size:50px;" placeholder="注册数量"><br>
-<div style="font-size:50px;">正式使用X条起，如果短信余量不足，请至智码平台获取。</div>
+<div style="font-size:50px;"><label id='tttipsInfo'>正式使用X条起，如果短信余量不足，请至智码平台获取。</label></div>
 <br>
 <button id="beginBtn" type="button"  class="form-control input-lg"  style="height:100px; font-size:50px; color:#FFF; background:#679deb;" onclick="beginReg()">跳过试用，立刻薅羊毛</button>
 <br>
@@ -43,6 +43,7 @@ function init(){
 	$("#infoLabel").html(""+Number($.cookie("leftSmNum")));
 	
 	$('#tryUseTips').text($('#tryUseTips').text().replace('X',$.cookie('leastTryNum')));
+	$('#tttipsInfo').text($('#tttipsInfo').text().replace('X',$.cookie('leastRegNum')));
 }
 function beginTry(){
 
