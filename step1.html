@@ -35,7 +35,7 @@ function refreshCnt(){
 		},
 		crossDomain: true,
 		success:function(data) {
-			$('#haoCnt').text($.cookie(data));
+			$('#haoCnt').text(data);
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown){
 			alert("请求失败，请重试");
