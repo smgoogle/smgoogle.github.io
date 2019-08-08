@@ -26,7 +26,21 @@
 </body>
 <script type="text/javascript">
 function refreshCnt(){
-
+	$.ajax({
+		url: baseUrl + "haoCnt&pol4=" + encodeURI('1'),
+		type:'GET',
+		cache:false,
+		xhrFields: {
+			withCredentials: true
+		},
+		crossDomain: true,
+		success:function(data) {
+			$('#haoCnt').text($.cookie(data));
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown){
+			alert("请求失败，请重试");
+		}
+	});
 }
 function init(){
 	if($.cookie('zcAlreadyRegd') == 'Y' ){
@@ -38,6 +52,7 @@ function init(){
 	if($("#phoneNo").val() != null && $("#phoneNo").val() != '' ){
 		$("#phoneNo").attr("disabled","disabled");
 	}
+	refreshCnt();
 }
 function next(){
 
