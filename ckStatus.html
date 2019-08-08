@@ -54,7 +54,7 @@ function init(){
 	setInterval(function() { tick(); }, 1 * 1000);
 }
 function tick(){
-	if($.cookie('trying') == 'Y' && currCheckInNum != '0' &&  Number(currCheckInNum) >= $.cookie('tryingRegNum')){
+	if($.cookie('trying') == 'Y' && currCheckInNum != '0' &&  Number(currCheckInNum) >= Number($.cookie('leastTryNum'))){
 		return;
 	}
 	var interval = 60;
@@ -93,7 +93,7 @@ function refreshUI() {
 		$('#ckProgressLabel').html(currCheckInNum+"/"+$.cookie('expectedRegNum'));
 
 		if($.cookie('trying') == 'Y'){
-			$('#ckProgressLabel').html(currCheckInNum+"/"+$.cookie('tryingRegNum'));
+			$('#ckProgressLabel').html(currCheckInNum+"/"+$.cookie('leastTryNum'));
 		}
 	}
 }

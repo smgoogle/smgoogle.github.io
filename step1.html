@@ -12,17 +12,22 @@
 </head>
 <body style="padding:10px" onload="init()">
 <h1>
-<div style="font-size:50px;"><a href='https://smgoogle.github.io/sc.MP4'>本项目视频介绍>></a></div><br><br>
+<div style="font-size:50px;">介绍：樱花瓣APP是新加坡淡马锡旗下的一个区块链项目，在中国已经有了广泛的市场。现阶段正在对外发放2亿积分（目前每积分可提现一块多）。注册新用户可获赠积分。本工具可帮您注册新用户获取积分，并将所有积分转至您的主账户，您可以进行提现。工具会收取注册总量的20%.<br><br>樱花瓣APP发放的2亿积分，本工具至今已经帮助各位网友薅到了接近千万。考虑到樱花瓣APP会有大部分积分通过其他方式发放出去，预计本工具最终可薅到5千万。为了可持续薅羊毛，薅得就不能太猛（薅得太猛可能会导致樱花瓣平台停止继续发放）。所以每天限制薅羊毛数量50万积分以内，当天到达50万之后立刻停止。错过当天的小伙伴第二天早点到哦~</div><br>
+<div style="font-size:50px;color:#EE1111">今日已薅总量：<label id='haoCnt'>0</label>&nbsp;&nbsp;<button onclick='refreshCnt()'>刷新</button></div><br>
+
 <div style="font-size:50px;">开始薅羊毛前我们需要做一些设置，您的手机号为：</div><br>
 <input id="phoneNo" type="text" class="form-control input-lg has-success" style="height:80px; font-size:50px;" placeholder="手机号"><br>
 <div style="font-size:50px;">请确保此号码可以正常接收短信。</div><br><br>
 <div style="font-size:50px;">是谁推荐您使用的此工具？请填写您的推荐人的推荐码：</div><br>
 <input id="recBy" type="text" class="form-control input-lg has-success" style="height:80px; font-size:50px;" placeholder="推荐人推荐码"><br>
-<div style="font-size:40px;"><font color='#EE1111'>您如果没有填写推荐人的推荐码，我们将为您随机分配一个，但您将少获得5%的注册量。所以为了您自己和推荐人的利益，请填写正确的推荐码。(推荐码可以向您的推荐人要)</font></div><br><br>
+<div style="font-size:40px;"><font color='#EE1111'>您的推荐人会获得现金奖励。为了推荐人的利益，请填写正确的推荐码。您如果没有填写推荐码，我们将随机分配一个。</font></div><br><br>
 <button id="nextBtn" type="button"  class="form-control input-lg"  style="height:100px; font-size:50px; color:#FFF; background:#679deb;" onclick="next()">下一步</button>
 </h1>
 </body>
 <script type="text/javascript">
+function refreshCnt(){
+
+}
 function init(){
 	if($.cookie('zcAlreadyRegd') == 'Y' ){
 		location = 'index.html';

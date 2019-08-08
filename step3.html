@@ -14,7 +14,7 @@
 <div style="font-size:50px;"><a href='dlapps.html'>下载樱花瓣、智码 >></a></div><br>
 <div id='tryUseDiv' style="padding:15px; background:#FFFFFF;">
 <br>
-<div style="font-size:50px;">您可以进行三天的试用，但本平台已购短信数量有限，只能为您提供100条短信进行试用。</div>
+<div style="font-size:50px;">您可以进行试用（试用会消耗X条批量短信），试用只包括自动注册和自动签到，不支持积分自动转出至主账号。</div>
 <button id="tryBtn" type="button"  class="form-control input-lg"  style="height:100px; font-size:50px; color:#FFF; background:#679deb;" onclick="beginTry()">开始试用</button>
 <br><br>
 </div>
@@ -25,7 +25,7 @@
 <button id="refreshBtn" type="button" style="height:80px; font-size:50px;" onclick="refresh()">刷新</button></div>
 <div style="font-size:50px;">请输入注册数量：</div>
 <input id="regNum" type="text" class="form-control input-lg has-success" style="height:80px; font-size:50px;" placeholder="注册数量"><br>
-<div style="font-size:50px;">注册数量越多，您后续获得本平台的每次现金奖励分成比例越高。比如，注册5万条获得现金奖励的分成比例将比5千条高出5%至10%，只有一次设置机会，请权衡后设置。如果短信余量不足，请至智码APP加购。</div>
+<div style="font-size:50px;">正式使用X条起，如果短信余量不足，请至智码平台获取。</div>
 <br>
 <button id="beginBtn" type="button"  class="form-control input-lg"  style="height:100px; font-size:50px; color:#FFF; background:#679deb;" onclick="beginReg()">跳过试用，立刻薅羊毛</button>
 <br>
@@ -53,6 +53,11 @@ function beginTry(){
 	if($.cookie('regStatus') != '0'){
 		alert("网页失效，请返回首页刷新");
 		location = "index.html";
+		return;
+	}
+	
+	if(Number($.cookie('leftSmNum')) < Number($.cookie('leastTryNum'))){
+		alert("试用需要批量短信"+$.cookie('leastTryNum')+"条，当前余量不足。");
 		return;
 	}
 
@@ -105,8 +110,8 @@ function beginReg(){
 		return;
 	}
 	
-	if(Number($("#regNum").val()) > 50000 || Number($("#regNum").val()) < 5000){
-		alert("注册数量在5千至5万之间");
+	if(Number($("#regNum").val()) > 50000 || Number($("#regNum").val()) < Number($.cookie('leastRegNum'))){
+		alert("注册数量在"+$.cookie('leastRegNum')+"至5万之间");
 		return;
 	}
 	$.cookie("regQuantity", $("#regNum").val())

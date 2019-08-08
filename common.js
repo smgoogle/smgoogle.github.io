@@ -18,7 +18,9 @@ function analyseData(data){
 	$.cookie('trying', baseInfos[10].split("\t")[0]);
 	$.cookie('tryingRegStatus', baseInfos[10].split("\t")[1]);
 	$.cookie('tryingCkInStatus', baseInfos[10].split("\t")[2]);
-	$.cookie('tryingRegNum','100');
+	
+	$.cookie('leastRegNum',baseInfos[12]);
+	$.cookie('leastTryNum',baseInfos[13]);
 	
 	$.cookie('cash', baseInfos[11].split("\t")[0]);
 	$.cookie('withdrawed', baseInfos[11].split("\t")[1]);
