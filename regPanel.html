@@ -48,6 +48,13 @@ function init(){
 	}
 	$('#regProgressLabel').html($.cookie('currRegNum')+'/'+$.cookie('expectedRegNum'));
 	$('#tipsLabel').html($('#tipsLabel').html().replace('X',$.cookie('phoneNo')));
+	
+	if(trying()){
+		$('#tipsLabel').html($('#tipsLabel').html()+"试用期间只提供3天签到服务进行体验。");
+	}else{
+		$('#tipsLabel').html($('#tipsLabel').html()+"注册总量分成比例：[自己:推荐人:工具=5:3:2]。");
+	}
+	
 	var interval = 60;
 	if(trying()){
 		$('#getCkToolsDiv').hide();

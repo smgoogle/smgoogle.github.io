@@ -17,6 +17,7 @@
 <label onclick='location="index.html"'><<返回首页</label></div><br><br>
 <div style="padding:15px; background:#FFFFFF; font-size:50px;"><label>状态：</label><font color="#EE1111"><label id='ckStatusLabel'>签到中...</label></font></div><br>
 <div style="padding:15px; background:#FFFFFF; font-size:50px;"><label>今日签到进度：</label><font color="#EE1111"><label id='ckProgressLabel'>0/0</label></font><label id='ckInfoLabel'>(每分钟刷新)</label></div>
+<div id='tryTips' style="padding:15px; background:#FFFFFF; font-size:50px;"><label>试用期间只提供3天签到服务进行体验。</label></div>
 <br>
 <div style="padding:15px; background:#679deb;">
 <button type="button"  class="form-control input-lg"  style="height:100px; font-size:50px; color:#FFF; background:#679deb;" onclick="browseAccts()">查看所有账号>></button>
@@ -40,8 +41,10 @@ function init(){
 
 	if($.cookie('trying') == 'Y'){
 		$('#useButton').show();
+		$('#tryTips').show();
 	}else{
 		$('#useButton').hide();
+		$('#tryTips').show();
 	}
 	$('#ckProgressLabel').html(currCheckInNum+"/"+$.cookie('expectedRegNum'));
 

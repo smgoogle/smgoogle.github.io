@@ -14,7 +14,7 @@
 <div style="font-size:50px;"><a href='dlapps.html'>下载樱花瓣、智码 >></a></div><br>
 <div id='tryUseDiv' style="padding:15px; background:#FFFFFF;">
 <br>
-<div style="font-size:50px;">您可以进行试用（试用会消耗X条批量短信），试用只包括自动注册和自动签到，不支持积分自动转出至主账号。</div>
+<div style="font-size:50px;"><label id='tryUseTips'>您可以进行试用（试用会消耗X条批量短信），试用只包括自动注册和自动签到，不支持积分自动转出至主账号。</label></div>
 <button id="tryBtn" type="button"  class="form-control input-lg"  style="height:100px; font-size:50px; color:#FFF; background:#679deb;" onclick="beginTry()">开始试用</button>
 <br><br>
 </div>
@@ -41,6 +41,8 @@ function init(){
 		$('#tryUseDiv').show();
 	}
 	$("#infoLabel").html(""+Number($.cookie("leftSmNum")));
+	
+	$('#tryUseTips').text($('#tryUseTips').text().replace('X',$.cookie('leastTryNum')));
 }
 function beginTry(){
 
