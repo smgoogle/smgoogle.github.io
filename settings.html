@@ -15,13 +15,20 @@
 <div style='padding:15px; background:#FFFFFF;font-size:50px;' onclick='location="withdraw.html"'>
 <label id='withdrawLabel'>提现</label></div><br>
 <div style='padding:15px; background:#FFFFFF;font-size:50px;'>
-<label>推荐码：</label><label id='recCodeLabel'>0</label></div><br>
+<label>推荐码：</label><label id='recCodeLabel'>0</label>
+</div><br>
+
+<div style='padding:15px; background:#FFFFFF;font-size:50px;' onclick='location="lord.html"'>
+<label id='upgradeToLord' >升级羊毛主</label>
+</div><br>
+
 </h1>
 </body>
 <script type="text/javascript">
 function init(){
 $('#recCodeLabel').html($.cookie('recCode'));
 $('#withdrawLabel').html("提现(¥"+$.cookie('cash')+")");
+$('#upgradeToLord').html("羊毛主（当前直推人数：" + $.cookie('promCkNum') + "）");
 }
 </script>
 </html>

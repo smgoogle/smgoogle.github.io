@@ -21,6 +21,9 @@ function analyseData(data){
 	
 	$.cookie('leastRegNum',baseInfos[12]);
 	$.cookie('leastTryNum',baseInfos[13]);
+	$.cookie('recommendedBy',baseInfos[14]);
+	$.cookie('upgradedToLord',baseInfos[15]);
+	$.cookie('lordLevel',baseInfos[16]);
 	
 	$.cookie('cash', baseInfos[11].split("\t")[0]);
 	$.cookie('withdrawed', baseInfos[11].split("\t")[1]);
