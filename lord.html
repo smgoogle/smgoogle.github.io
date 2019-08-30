@@ -28,6 +28,10 @@
 </body>
 <script type="text/javascript">
 function upgrade(){
+if($.cookie('upgradedToLord') == 'Y'){
+alert('您已是羊毛主');
+return;
+}
 $('#upgradeBtn').text('升级中...');
 $("#upgradeBtn").attr("disabled","disabled");
 	$.ajax({
