@@ -14,7 +14,7 @@
 <script src="common.js" type="text/javascript"></script>
 </head>
 
-<body style="padding:10px" onload="captcha()">
+<body style="padding:10px">
 <br>
 <br>
 <input id="phoneNo" type="text" class="form-control input-lg has-success" style="height:80px; font-size:50px;" placeholder="手机号"><br>
@@ -62,7 +62,7 @@ function signUp(){
 	$("#signUpBtn").text('提交中请等待...');
 	$("#signUpBtn").attr("disabled","disabled");
 	$.ajax({
-		url: baseUrl + "signUp&pol4=" + encodeURI($("#phoneNo").val() + "\t"+ $("#password").val() + "\t"+"1"+"\t" + ccccptttcha),
+		url: baseUrl + "signUp5&pol4=" + encodeURI($("#phoneNo").val() + "\t"+ $("#password").val() + "\t"+"1"+"\t" + "AAAAAA"),
 		type:'GET',
 		cache:false,
 		xhrFields: {
@@ -71,15 +71,7 @@ function signUp(){
 		success:function(data) {
 			if(data != null && data.indexOf("ERROR:")!= -1){
 				//captcha();
-				if(data.indexOf("验证码")!= -1){
-					if(ccccptttcha != null && ccccptttcha != ''){
-						alert("如果您用的苹果手机，请在“设置->Safari浏览器”选项下关闭“阻止跨网站”");
-						return;
-					}
-					alert("提交失败请重试");
-				}else{
-					alert(data);
-				}
+				alert(data);
 				$("#signUpBtn").text('注册');
 				$("#signUpBtn").removeAttr("disabled");
 				captcha();

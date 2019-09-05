@@ -51,7 +51,7 @@ function onWithdrawClick(){
 	}
 	
 	var msg = "您当前正在将¥"+$.cookie('cash')+"提现，折合花瓣"+ hbCnt +
-                    "个(当前兑现率"+yhbVal+")，我们会直接向您的樱花瓣账户("+$.cookie('phoneNo')+")转"+hbCnt+"个已激活的可直接提现的花瓣，您可以在您的樱花瓣APP花瓣历史记录里查看。";
+                    "个(当前兑现率"+yhbVal+")，我们会直接用我们自己的樱花瓣账户向您的樱花瓣账户("+$.cookie('phoneNo')+")转"+hbCnt+"个已激活的可直接提现的花瓣，您可以在您的樱花瓣APP花瓣历史记录里查看。";
 	if(confirm(msg)){
 		withdraw();
 	}

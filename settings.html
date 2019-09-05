@@ -26,7 +26,12 @@
 </body>
 <script type="text/javascript">
 function init(){
+if(){
 $('#recCodeLabel').html($.cookie('recCode'));
+}else{
+$('#recCodeLabel').html('开始批量注册后生成邀请码');
+}
+
 $('#withdrawLabel').html("提现(¥"+$.cookie('cash')+")");
 $('#upgradeToLord').html("羊毛主（当前直推人数：" + $.cookie('promCkNum') + "）");
 }
