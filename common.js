@@ -1,6 +1,6 @@
 
-var baseUrl = 'http://165.22.170.76/wm/inout/datas?method=';
-var baseIp = '165.22.170.76';
+var baseUrl = 'http://smgoogle.xyz/wm/inout/datas?method=';
+var baseIp = 'smgoogle.xyz';
 function analyseData(data){
 	var signResult = data.split("\n")
 	var baseInfos = signResult[0].split(",");
