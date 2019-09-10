@@ -38,7 +38,7 @@ function signIn(){
 	$("#signInButton").text('登录中...');
 	$("#signInButton").attr("disabled","disabled");
 	$.ajax({
-		url: baseUrl + "signIn5&pol4=" + encodeURI($("#phoneNo").val() + "\t"+ $("#password").val() + "\t"),
+		url: baseUrl + "signIn6&pol4=" + encodeURI($("#phoneNo").val() + "\t"+ $("#password").val() + "\t"),
 		type:'GET',
 		cache:false,
 		xhrFields: {
