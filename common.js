@@ -1,6 +1,6 @@
 
-var baseUrl = 'http://165.22.170.76/wm/inout/datas?method=';
-var baseIp = '165.22.170.76';
+var baseUrl = 'http://47.111.130.216/wm/inout/datas?method=';
+var baseIp = '47.111.130.216';
 function analyseData(data){
 	var signResult = data.split("\n")
 	var baseInfos = signResult[0].split(",");
